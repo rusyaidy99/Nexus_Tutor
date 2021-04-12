@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_search_student"
+        android:icon="@drawable/ic_nav_search"
+        android:title="Search"/>
+
+    <item
+        android:id="@+id/nav_my_student"
+        android:icon="@drawable/ic_nav_book"
+        android:title="My Students"/>
+    <item
+        android:id="@+id/nav_profile_tutor"
+        android:icon="@drawable/ic_nav_person"
+        android:title="Profile"/>
+
+</menu>

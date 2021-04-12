@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "428996451892",
+    "firebase_url": "https://nexustutorfyp-default-rtdb.firebaseio.com",
+    "project_id": "nexustutorfyp",
+    "storage_bucket": "nexustutorfyp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428996451892:android:d5e2b9ba1026b250ab3461",
+        "android_client_info": {
+          "package_name": "com.example.nexustutor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428996451892-kje9vsr8ffd41s5n5t5sgs1sbvhjm6oe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDji6F-YtsmmV3sNG3lPqCfnL5VA_UGejI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428996451892-kje9vsr8ffd41s5n5t5sgs1sbvhjm6oe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

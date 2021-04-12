@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_bg"
+    tools:context=".register_as">
+
+    <ImageButton
+        android:id="@+id/img_btn_back"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_chevron_left_white_24dp" />
+
+    <TextView
+
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="20dp"
+        android:text="REGISTER AS"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toBottomOf="@+id/img_btn_back"
+        app:layout_constraintStart_toEndOf="@+id/img_btn_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6" />
+
+    <TextView
+
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="176dp"
+        android:gravity="center"
+        android:text="Please Choose Your Account Type"
+
+        android:textColor="@color/colorWhite"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <ImageButton
+        android:id="@+id/img_btn_tutorType"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/white_border_soft_edge"
+        android:padding="20dp"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/tutor_type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/img_btn_studentType"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <ImageButton
+        android:id="@+id/img_btn_studentType"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/white_border_soft_edge"
+        android:padding="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/student_type"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/img_btn_tutorType"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="STUDENT"
+        android:textColor="@color/colorWhite"
+        android:layout_marginTop="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/img_btn_studentType"
+        app:layout_constraintStart_toStartOf="@+id/img_btn_studentType"
+        app:layout_constraintTop_toBottomOf="@+id/img_btn_studentType" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TUTOR"
+        android:textColor="@color/colorWhite"
+        android:layout_marginTop="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/img_btn_tutorType"
+        app:layout_constraintStart_toStartOf="@+id/img_btn_tutorType"
+        app:layout_constraintTop_toBottomOf="@+id/img_btn_tutorType" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/nav_search"
+        android:icon="@drawable/ic_nav_search"
+        android:title="Search"/>
+
+
+    <item
+        android:id="@+id/nav_add_offer"
+        android:icon="@drawable/ic__add_offer"
+        android:title="Offer"/>
+    <item
+        android:id="@+id/nav_tutor"
+        android:icon="@drawable/ic_nav_book"
+        android:title="My Tutor"/>
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_nav_person"
+        android:title="Profile"/>
+</menu>
