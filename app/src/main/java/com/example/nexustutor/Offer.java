@@ -1,14 +1,15 @@
 package com.example.nexustutor;
 
 public class Offer {
-    private String uid, title, description, locationCity, locationState, subject, gender;
+    private String oid ,uid, title, description, locationCity, locationState, subject, gender;
     private int Thumbnail;
 
     public Offer() {
     }
 
   /*  Offer offer = new Offer(uid, title, description, city, state, subject, gender);*/
-    public Offer(String uid, String title, String description, String locationCity, String locationState, String subject, String gender, int thumbnail) {
+    public Offer(String oid, String uid, String title, String description, String locationCity, String locationState, String subject, String gender, int thumbnail) {
+        this.oid = oid;
         this.uid = uid;
         this.title = title;
         this.description = description;
@@ -28,7 +29,8 @@ public class Offer {
         this.gender = gender;
         this.Thumbnail = thumbnail;
     }
-    public Offer(String uid, String title, String description, String locationCity, String locationState, String subject, String gender) {
+    public Offer(String oid, String uid, String title, String description, String locationCity, String locationState, String subject, String gender) {
+        this.oid = oid;
         this.uid = uid;
         this.title = title;
         this.description = description;
@@ -103,4 +105,11 @@ public class Offer {
         Thumbnail = thumbnail;
     }
 
+    public String getOid() {
+        return oid;
+    }
+
+    public void setOid(String oid) {
+        this.oid = oid;
+    }
 }

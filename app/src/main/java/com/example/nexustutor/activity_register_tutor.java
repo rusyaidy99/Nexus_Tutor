@@ -26,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class activity_register_tutor extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private ImageButton btnBack;
     private Spinner spinnerGender;
-    private EditText etname, etEmail, etPassword, etConfirmPass;
+    private EditText etname, etEmail, etPassword, etConfirmPass, etContact;
     private ProgressBar progressBar;
     private Button btnRegister;
 
@@ -42,6 +42,7 @@ public class activity_register_tutor extends AppCompatActivity implements Adapte
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
         etConfirmPass = findViewById(R.id.et_confirm_pass);
+        etContact = findViewById(R.id.et_contact);
 
         btnBack = findViewById(R.id.img_btn_back);
         btnRegister = findViewById(R.id.btn_register);
@@ -72,6 +73,7 @@ public class activity_register_tutor extends AppCompatActivity implements Adapte
                 final String name = etname.getText().toString().trim();
                 final String email = etEmail.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
+                final String phone = etContact.getText().toString().trim();
                 String confirmpass = etConfirmPass.getText().toString().trim();
                 final String gender = spinnerGender.getSelectedItem().toString();
                 final String type = "Tutor";
@@ -98,15 +100,24 @@ public class activity_register_tutor extends AppCompatActivity implements Adapte
                     etPassword.requestFocus();
                     return;
                 }
+                if(phone.isEmpty()){
+                    etContact.setError("Phone Number is required");
+                    etContact.requestFocus();
+                    return;
+                }
 
        /* if(password.length() < 8 ){
             etPassword.setError("Password should be less than 8 characters!");
             etPassword.requestFocus();
             return;
-        }*/
+        }*/     if(confirmpass.isEmpty()){
+                    etConfirmPass.setError("Confirm Password is required");
+                    etConfirmPass.requestFocus();
+                    return;
+                }
 
-                if(confirmpass.isEmpty()){
-                    etConfirmPass.setError("Please confirm your password");
+                if(!confirmpass.equals(password)){
+                    etConfirmPass.setError("Password does not match");
                     etConfirmPass.requestFocus();
                     return;
                 }
@@ -121,7 +132,7 @@ public class activity_register_tutor extends AppCompatActivity implements Adapte
                             /*Toast.makeText(activity_register.this, "User has been registered", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(getApplicationContext(), activity_view_tutor_profile.class));
                             */
-
+                            String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
                             tutor_register user = new tutor_register(name, email, gender, type);
 
                             FirebaseDatabase.getInstance().getReference("Tutors")
@@ -132,7 +143,10 @@ public class activity_register_tutor extends AppCompatActivity implements Adapte
 
                                     if (task.isSuccessful()){
                                         Toast.makeText(activity_register_tutor.this, "User has been registered", Toast.LENGTH_LONG).show();
-                                        startActivity(new Intent(getApplicationContext(), activity_view_tutor_profile.class));
+                                        FirebaseDatabase.getInstance().getReference("Tutors")
+                                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("uid")
+                                                .setValue(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                        startActivity(new Intent(getApplicationContext(), login_main.class));
 
                                         //redirect to login
                                     }else {
@@ -141,6 +155,9 @@ public class activity_register_tutor extends AppCompatActivity implements Adapte
                                     }
                                 }
                             });
+                            FirebaseDatabase.getInstance().getReference("Tutors")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .child("phone").setValue(phone);
 
                         }else{
                             Toast.makeText(activity_register_tutor.this, "Registration Failed! Try Again!" + task.getException().getMessage(), Toast.LENGTH_LONG).show();

@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#5558C8</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorlightBlack">#90000000</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorWhitefade">#20FFFFFF</color>
     <color name="colorgradient1">#9778FF</color>
@@ -15,5 +16,20 @@
     //gradient background color
     <color name="gradcolor1">#C3BCEB</color>
     <color name="gradcolor2">#B2B1B8</color>
+
+    //OceanColor
+    <color name="oceanOne">#93C4D1</color>
+    <color name="oceanTwo">#3E88A5 </color>
+    <color name="oceanThree">#2D5F6E </color>
+    <color name="oceanFour">#5F97AA </color>
+    <color name="oceanFive">#18363E </color>
+
+    //WhitePalettes
+    <color name="whiteOne">#FFFFFF</color>
+    <color name="WhiteTwo">#F9F6F2 </color>
+    <color name="WhiteThree">#E2E2E2 </color>
+    <color name="WhiteFour">#E1DBD6  </color>
+    <color name="WhiteFive">#D1D1D1  </color>
+
 
 </resources>

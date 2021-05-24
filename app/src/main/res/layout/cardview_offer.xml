@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardview_offer"
     android:layout_width="match_parent"
+    android:elevation="20dp"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:clickable="true"
@@ -27,7 +28,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/profile_icon"
+            android:src="@drawable/nopicture"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,8 +37,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:fontFamily="@font/opensansregular"
             android:gravity="center"
             android:text="time_date"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/img_tutor"
             app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
@@ -46,11 +49,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/opensansregular"
             android:gravity="center"
             android:text="Tutor Name"
             android:textColor="@color/colorBlack"
-            android:textSize="13sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/img_tutor"
             app:layout_constraintTop_toTopOf="@+id/img_tutor" />
 
@@ -60,9 +64,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/opensansregular"
             android:text="My Title"
-            android:textSize="12sp"
             android:textColor="@color/colorBlack"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_tutor" />
@@ -74,13 +79,14 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:fontFamily="@font/opensansregular"
             android:inputType="textMultiLine"
             android:lines="2"
             android:maxLines="7"
             android:minLines="3"
             android:text="My Offer Description"
             android:textColor="@color/colorBlack"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />
@@ -91,8 +97,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/opensansregular"
             android:text="Location"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_description" />
 
@@ -100,9 +107,10 @@
             android:id="@+id/tv_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/opensansregular"
             android:text="Serdang, Selangor"
-            android:textSize="12sp"
             android:textColor="@color/colorBlack"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/textView10"
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -111,8 +119,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
+            android:fontFamily="@font/opensansregular"
             android:text="Subject"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/tv_location"
             app:layout_constraintTop_toTopOf="@+id/textView10" />
 
@@ -120,9 +129,10 @@
             android:id="@+id/tv_subject_preferences"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/opensansregular"
             android:text="Mathematics"
-            android:textSize="12sp"
             android:textColor="@color/colorBlack"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/textView12"
             app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -132,8 +142,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/opensansregular"
             android:text="Gender Preferences"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_location" />
 
@@ -141,11 +152,104 @@
             android:id="@+id/tv_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/opensansregular"
+            android:paddingBottom="5dp"
             android:text="Male Tutor Only"
-            android:textSize="12sp"
             android:textColor="@color/colorBlack"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/textView14"
             app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+        <!--<ImageView
+            android:id="@+id/imageView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="center"
+            app:layout_constraintStart_toStartOf="@+id/tv_gender"
+            app:layout_constraintTop_toBottomOf="@+id/tv_gender"
+            app:srcCompat="@drawable/ic_outline_back_hand_24"
+            />-->
+
+        <ImageButton
+            android:id="@+id/imgBtn_RequestOfferOff"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_gender"
+            app:srcCompat="@drawable/ic_outline_back_hand_24" />
+
+        <ImageButton
+            android:id="@+id/imgBtn_RequestOfferOn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_gender"
+            app:srcCompat="@drawable/ic_baseline_back_hand_24" />
+
+        <ImageButton
+            android:id="@+id/imgBtn_CommentOffer"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_gender"
+            app:srcCompat="@drawable/ic_outline_mode_comment_24" />
+
+        <ImageButton
+            android:id="@+id/imgBtn_removeOffer"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:scaleType="center"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_delete_24" />
+
+        <TextView
+            android:id="@+id/tv_comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="0 Comment"
+            android:fontFamily="@font/opensansregular"
+            app:layout_constraintStart_toStartOf="@+id/tv_gender"
+            app:layout_constraintTop_toBottomOf="@+id/imgBtn_CommentOffer" />
+
+        <TextView
+            android:id="@+id/tv_count_offer_request"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/red_circle"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/colorWhite"
+            android:fontFamily="@font/opensansregular"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/imgBtn_RequestOfferOff"
+            app:layout_constraintStart_toStartOf="@+id/imgBtn_RequestOfferOff" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

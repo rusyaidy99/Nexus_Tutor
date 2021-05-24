@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/WhiteThree"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center_horizontal"
     tools:context=".Fragment.SearchTutorFragment">
 
@@ -19,33 +21,19 @@
             android:id="@+id/toolbar">
 
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_nav_search"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/search_bar"
-                android:background="@android:color/transparent"
-                android:hint="Search"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"/>
-
         </androidx.appcompat.widget.Toolbar>
 
-        <Button
-            android:id="@+id/btn_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Search" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
    <androidx.recyclerview.widget.RecyclerView
        android:id="@+id/recyclerview_tutor"
        android:layout_centerHorizontal="true"
+       android:layout_marginTop="20dp"
+       android:foregroundGravity="center"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
+       android:layout_marginLeft="25dp"
+       android:layout_centerInParent="true"
        android:layout_below="@+id/bar"/>
 </RelativeLayout>

@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".activity_session_details_tutor">
+
+<androidx.appcompat.widget.Toolbar
+    android:id="@+id/toolbar7"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/white_box_shadow"
+    android:minHeight="?attr/actionBarSize"
+    android:theme="?attr/actionBarTheme"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Session"
+        android:textColor="@color/colorBlack"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar7"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar7" />
+
+<ImageButton
+    android:id="@+id/img_btn_back"
+    style="?android:attr/borderlessButtonStyle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintBottom_toBottomOf="@+id/toolbar7"
+    app:layout_constraintStart_toStartOf="@+id/toolbar7"
+    app:layout_constraintTop_toTopOf="parent"
+    app:srcCompat="@drawable/ic_chevron_left_black_24dp" />
+
+<TextView
+    android:id="@+id/textView11"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="8dp"
+    android:text="My Session Details"
+    android:textColor="@color/colorBlack"
+    android:textStyle="bold"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/toolbar7" />
+
+<de.hdodenhof.circleimageview.CircleImageView
+    android:id="@+id/circleImg_profile_detail"
+    android:layout_width="130dp"
+    android:layout_height="130dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="32dp"
+    android:src="@drawable/profile_icon"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+<TextView
+    android:id="@+id/textView15"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:textColor="@color/colorBlack"
+    android:text="Student Name"
+    app:layout_constraintStart_toEndOf="@+id/circleImg_profile_detail"
+    app:layout_constraintTop_toTopOf="@+id/circleImg_profile_detail" />
+
+<TextView
+    android:id="@+id/textView17"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:textColor="@color/colorBlack"
+    android:layout_marginTop="8dp"
+    android:text="Session Started"
+    app:layout_constraintStart_toEndOf="@+id/circleImg_profile_detail"
+    app:layout_constraintTop_toBottomOf="@+id/tv_detail_name" />
+
+<TextView
+    android:id="@+id/textView21"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:textColor="@color/colorBlack"
+    android:layout_marginTop="8dp"
+    android:text="Subject Registered"
+    app:layout_constraintStart_toEndOf="@+id/circleImg_profile_detail"
+    app:layout_constraintTop_toBottomOf="@+id/tv_detail_session_date" />
+
+<TextView
+    android:id="@+id/tv_detail_gender"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Gender"
+    app:layout_constraintEnd_toEndOf="@+id/circleImg_profile_detail"
+    app:layout_constraintStart_toStartOf="@+id/circleImg_profile_detail"
+    app:layout_constraintTop_toBottomOf="@+id/circleImg_profile_detail" />
+
+<TextView
+    android:id="@+id/tv_detail_name"
+    android:layout_width="224dp"
+    android:layout_height="19dp"
+    android:layout_marginStart="16dp"
+    android:text="Tutor Name"
+    app:layout_constraintStart_toEndOf="@+id/circleImg_profile_detail"
+    app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+<TextView
+    android:id="@+id/tv_detail_session_date"
+    android:layout_width="224dp"
+    android:layout_height="19dp"
+    android:layout_marginStart="16dp"
+    android:text="Tutor Name"
+    app:layout_constraintStart_toEndOf="@+id/circleImg_profile_detail"
+    app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+<TextView
+    android:id="@+id/tv_detail_subject"
+    android:layout_width="224dp"
+    android:layout_height="19dp"
+    android:layout_marginStart="16dp"
+    android:text="Tutor Name"
+    app:layout_constraintStart_toEndOf="@+id/circleImg_profile_detail"
+    app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+
+
+    <Button
+    android:id="@+id/btn_detail_contact"
+    style="?android:attr/borderlessButtonStyle"
+    android:background="@drawable/gray_border"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="16dp"
+    android:text="COntact"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/tv_detail_subject" />
+
+<ImageButton
+    android:id="@+id/img_btn_detail_report"
+    style="?android:attr/borderlessButtonStyle"
+    android:layout_width="39dp"
+    android:layout_height="26dp"
+android:visibility="invisible"
+    android:layout_marginEnd="8dp"
+    app:layout_constraintBottom_toTopOf="@+id/textView15"
+
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/toolbar7"
+    app:srcCompat="@drawable/triple_dot" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview_set_fee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_detail_contact">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_set_fee_session"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Set Your Fee Amount"
+                android:textColor="@color/colorBlack"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="124dp"
+                android:text="*Please make sure to enter reasonable Fee Amount (based on how many hours)"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.516"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_textview" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="*Your Bank Account Number is confidential, make sure to let your student know to proceed for their transaction"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.516"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+            <TextView
+                android:id="@+id/tv_textview1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="32dp"
+
+                android:text="Enter Total Hours"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_set_fee_session" />
+
+            <TextView
+                android:id="@+id/tv_textview2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="8dp"
+                android:text="Hours"
+                app:layout_constraintBottom_toBottomOf="@+id/et_hours_detail"
+                app:layout_constraintStart_toEndOf="@+id/et_hours_detail"
+                app:layout_constraintTop_toTopOf="@+id/et_hours_detail" />
+
+            <TextView
+                android:id="@+id/tv_textview3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="8dp"
+                android:text="MYR"
+                app:layout_constraintBottom_toBottomOf="@+id/et_fee_amount_detail"
+                app:layout_constraintStart_toEndOf="@+id/et_fee_amount_detail"
+                app:layout_constraintTop_toTopOf="@+id/et_fee_amount_detail" />
+
+            <TextView
+                android:id="@+id/tv_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="24dp"
+                android:text="Enter Total Fee Amount"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_textview1" />
+
+            <EditText
+                android:id="@+id/et_hours_detail"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="72dp"
+                android:background="@drawable/white_thick_box_shadow"
+                android:hint="0"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_textview1"
+                app:layout_constraintStart_toEndOf="@+id/tv_textview1"
+                app:layout_constraintTop_toTopOf="@+id/tv_textview1" />
+
+            <EditText
+                android:id="@+id/et_fee_amount_detail"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_thick_box_shadow"
+                android:hint="0"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_textview"
+                app:layout_constraintEnd_toEndOf="@+id/et_hours_detail"
+                app:layout_constraintStart_toStartOf="@+id/et_hours_detail"
+                app:layout_constraintTop_toTopOf="@+id/tv_textview" />
+
+            <Button
+                android:id="@+id/btn_save_details"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/green_button_box"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Save Changes"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_cancel_detail"
+                app:layout_constraintTop_toBottomOf="@+id/textView16"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <Button
+                android:id="@+id/btn_cancel_detail"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/gray_border"
+                android:text="Return"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_save_details"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/btn_save_details"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview_download_file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_detail_contact">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_textview5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Your Student's Payment Proof"
+                android:textColor="@color/colorBlack"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="*Make sure to end your session after the payment succeed"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.516"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+            <TextView
+                android:id="@+id/tv_download_filename"
+                android:layout_width="224dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="32dp"
+                android:text="filename.pdf"
+                app:layout_constraintBottom_toBottomOf="@+id/textView18"
+                app:layout_constraintStart_toStartOf="@+id/textView18"
+                app:layout_constraintTop_toTopOf="@+id/textView18" />
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="*Please contact your student if you haven't receive the payment"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.516"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/gray_dotted_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_textview5" />
+
+            <Button
+                android:id="@+id/btn_end_session"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="84dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/red_button_box"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="End Session"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_cancel_event"
+                app:layout_constraintTop_toBottomOf="@+id/textView20"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <Button
+                android:id="@+id/btn_cancel_event"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/gray_border"
+                android:text="Cancel
+"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_end_session"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/btn_end_session"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageButton
+                android:id="@+id/img_btn_download_file"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="55dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="@+id/textView18"
+                app:layout_constraintEnd_toEndOf="@+id/textView18"
+                app:layout_constraintTop_toTopOf="@+id/textView18"
+                app:srcCompat="@drawable/ic_baseline_download_24" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

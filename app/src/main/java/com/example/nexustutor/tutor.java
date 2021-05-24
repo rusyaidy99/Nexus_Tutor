@@ -6,6 +6,9 @@ public class tutor {
     private String acctype;
     private String gender;
     private String image;
+    private String uid;
+
+
     /*private int Thumbnail;*/
 
     public tutor() {
@@ -18,7 +21,14 @@ public class tutor {
         this.gender = gender;
         this.image = imageUrl;
     }
-
+    public tutor(String fullname, String email, String acctype, String gender, String imageUrl, String uid) {
+        this.fullname = fullname;
+        this.email = email;
+        this.acctype = acctype;
+        this.gender = gender;
+        this.image = imageUrl;
+        this.uid = uid;
+    }
     public String getFullname() {
         return fullname;
     }
@@ -57,5 +67,13 @@ public class tutor {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

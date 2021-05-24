@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cardview_student_active"
+    android:layout_margin="20dp"
+    android:clickable="true"
+    app:cardCornerRadius="15dp"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_active_profile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/profile_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_active_name"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Mr.John"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/img_active_profile"
+            app:layout_constraintTop_toTopOf="@+id/img_active_profile" />
+
+        <TextView
+            android:id="@+id/tv_active_subject"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:text="International Language (French)"
+
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_active_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_active_name" />
+
+        <TextView
+            android:id="@+id/lbl_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Started Session"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_active_subject"
+            app:layout_constraintTop_toBottomOf="@+id/tv_active_subject" />
+
+        <TextView
+            android:id="@+id/tv_active_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="1/1/2020"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/lbl_date"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_date" />
+
+        <Button
+            android:id="@+id/btn_contact"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/green_border_box"
+            android:text="Contact"
+            android:textColor="#8D8D8D"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_pay"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/radio_selected"
+            android:text="Not Paid"
+            android:textColor="@color/colorWhite"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_contact"
+            app:layout_constraintTop_toTopOf="@+id/btn_contact"
+            app:layout_constraintVertical_bias="0.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.cardview.widget.CardView>
+

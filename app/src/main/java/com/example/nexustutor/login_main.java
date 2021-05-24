@@ -71,7 +71,7 @@ public class login_main extends AppCompatActivity implements View.OnClickListene
         txtForget.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent forget = new Intent(login_main.this, ResetPasswordActivity.class);
+                Intent forget = new Intent(login_main.this, activity_reset_password.class);
                 startActivity(forget);
             }
         });

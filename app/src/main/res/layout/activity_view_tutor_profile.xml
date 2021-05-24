@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/WhiteTwo"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,29 +11,32 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="30dp"
         tools:context=".activity_view_tutor_profile">
 
         <TextView
             android:id="@+id/tv_tutor_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/opensansregular"
             android:text="Tutor Profile"
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold"
+
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.383"
-            app:layout_constraintStart_toEndOf="@+id/imageButton2"
+            app:layout_constraintHorizontal_bias="0.285"
+            app:layout_constraintStart_toEndOf="@+id/img_btn_back_viewprofile"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/img_btn_back_viewprofile"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="39dp"
-            android:layout_height="26dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:scaleType="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_chevron_left_black_24dp" />
@@ -45,56 +49,104 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_tutor_profile"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="15dp">
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
+                android:layout_marginBottom="10dp"
                 android:orientation="vertical">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:background="@color/oceanThree"/>
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/img_tutor_profile"
-                    android:layout_width="144dp"
-                    android:layout_gravity="center"
+                    android:layout_width="147dp"
                     android:layout_height="144dp"
-                    android:src="@drawable/profile_image" />
+                    android:layout_gravity="top|center"
+
+                    android:src="@drawable/nopicture"
+                    android:elevation="40dp"
+                    android:layout_margin="10dp"/>
 
                 <TextView
                     android:id="@+id/tv_tutor_name"
-                    android:textSize="20sp"
-                    android:gravity="center"
-                    android:textColor="@color/colorBlack"
-                    android:layout_width="match_parent"
-
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:text="Name" />
+                    android:gravity="center"
+                    android:text="Name"
+                    android:fontFamily="@font/opensansregular"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/whiteOne"
+                    android:textSize="20sp" />
                 <TextView
                     android:id="@+id/tv_tutor_gender"
                     android:textSize="15sp"
-                    android:gravity="center"
-                    android:textColor="@color/colorBlack"
+                    android:layout_gravity="center"
+                    android:textColor="@color/WhiteTwo"
+                    android:fontFamily="@font/opensansregular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="50dp"
+                    android:gravity="center"
                     android:text="gender" />
 
                 <TextView
-                    android:id="@+id/tv_tutor_category"
+                    android:id="@+id/tv_tutor_location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/opensansregular"
+                    android:layout_marginTop="75dp"
+                   android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Subject Teach"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="20sp" />
+                    android:text="Unknown Location"
+                    android:textColor="@color/WhiteTwo"
+                    android:textSize="12sp" />
 
                 <Button
-                    android:id="@+id/btn_logout"
-                    android:layout_width="144dp"
+                    android:id="@+id/btn_hire"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="120dp"
+                    android:textColor="@color/whiteOne"
+                    android:textStyle="bold"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:fontFamily="@font/opensansregular"
+                    android:background="@drawable/black_round_border"
                     android:text="HIRE ME" />
-            </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_hired"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:background="@drawable/green_button_box"
+                    android:text="HIRED"
+                    android:visibility="gone"/>
+                <Button
+                    android:id="@+id/btn_hire_status"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/radio_selected"
+                    android:textColor="@color/colorWhite"
+                    android:text="Requesting"
+                    android:visibility="gone" />
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -102,8 +154,8 @@
                 android:layout_marginTop="-10sp"
                 android:background="@drawable/white_box_shadow"
                 android:orientation="horizontal"
-                android:paddingTop="1sp"
-                android:paddingBottom="3sp">
+                android:paddingTop="1dp"
+                android:paddingBottom="7dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -130,6 +182,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="28dp"
                             android:layout_weight="1"
+                            android:layout_marginBottom="5dp"
                             app:srcCompat="@drawable/ic_call_black_24dp" />
 
                         <TextView
@@ -137,6 +190,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:fontFamily="@font/opensansregular"
+                            android:textColor="@color/colorBlack"
                             android:text="Contact"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -156,21 +211,30 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
+                            android:textColor="@color/oceanFive"
                             android:id="@+id/tv_count_students"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensansregular"
                             android:layout_weight="1"
                             android:paddingTop="4sp"
                             android:text="0"
+                            android:layout_marginBottom="5dp"
                             android:textAlignment="center" />
 
                         <TextView
-                            android:id="@+id/tv_students"
+                            android:textColor="@color/whiteOne"
+                            android:id="@+id/tv_count_tutor_students"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensansregular"
                             android:layout_weight="1"
-                            android:paddingTop="4sp"
-                            android:text="Students"
+                            android:background="@drawable/background_text2"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:text="Student(s)"
                             android:textSize="12sp" />
 
                     </LinearLayout>
@@ -183,6 +247,8 @@
                         android:orientation="vertical"
                         android:paddingLeft="24sp"
                         android:paddingRight="24sp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
                         app:layout_constraintHorizontal_bias="0.5"
@@ -194,18 +260,26 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:fontFamily="@font/opensansregular"
                             android:paddingTop="4sp"
+                            android:layout_marginBottom="5dp"
+                            android:textColor="@color/oceanFive"
                             android:text="0"
                             android:textAlignment="center" />
 
                         <TextView
-                            android:id="@+id/tv_subject"
+                            android:id="@+id/tv_count_teach_subject"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:fontFamily="@font/opensansregular"
+                            android:textColor="@color/whiteOne"
                             android:layout_weight="1"
-                            android:paddingLeft="0sp"
-                            android:paddingTop="4sp"
-                            android:text="Subject/s Teach"
+                            android:background="@drawable/background_text2"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:text="Subject(s) Teach"
                             android:textSize="12sp" />
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -216,52 +290,173 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="About Me"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/opensansregular"
+                        android:textColor="@color/oceanFive"
+                        android:textStyle="bold" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:src="@drawable/ic_baseline_person_24"/>
+                </LinearLayout>
+
+
+
                 <TextView
+                    android:id="@+id/tv_tutor_about_me"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="About Me"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorBlack"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:text="Description of me"
-                    android:textColor="@color/colorBlack"/>
-                <TextView
-                    android:layout_width="match_parent"
+                    android:fontFamily="@font/opensansregular"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginBottom="20dp"/>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Subjects I Teach"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorBlack"/>
-                <HorizontalScrollView
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Subjects I Teach"
+                        android:fontFamily="@font/opensansregular"
+                        android:layout_marginRight="10dp"
+                        android:textColor="@color/oceanFive"
+                        android:textStyle="bold" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:src="@drawable/ic_baseline_library_books_24"/>
+                </LinearLayout>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_marginRight="3dp"
+                    android:id="@+id/cardView_education"
+                    app:cardCornerRadius="4dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_height="50dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/tv_education"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:textSize="15sp"
+                            android:fontFamily="@font/opensansregular"
+                            android:textColor="@color/oceanThree"
+                            android:text="None"
+                            android:padding="12dp"
+                            tools:layout_editor_absoluteX="107dp"
+                            tools:layout_editor_absoluteY="133dp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_subject_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <!--<HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fillViewport="true"
                     android:measureAllChildren="false"
                     android:scrollbars="none">
+
+                    <TextView
+                        android:id="@+id/tv_tutor_subject_teach"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Science"
+                        android:textColor="@color/colorBlack" />
+                </HorizontalScrollView>-->
+                <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Description of me"
-                        android:textColor="@color/colorBlack"/>
-                </HorizontalScrollView>
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/opensansregular"
+                        android:text="My Skills and Education"
+                        android:textColor="@color/colorBlack"
+                        android:layout_marginRight="10dp"
+                        android:textStyle="bold" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:src="@drawable/ic_baseline_ballot_24"/>
+                </LinearLayout>
 
-                <TextView
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_marginRight="3dp"
+                    android:id="@+id/cardview_edu"
+                    app:cardCornerRadius="4dp"
+
+                    android:layout_height="50dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/tv_edu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:textSize="15sp"
+                            android:fontFamily="@font/opensansregular"
+                            android:textColor="@color/oceanThree"
+                            android:text="None"
+                            android:padding="12dp"
+                            tools:layout_editor_absoluteX="107dp"
+                            tools:layout_editor_absoluteY="133dp" />
+                         </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerrview_education_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <!--<TextView
+                    android:id="@+id/tv_tutor_education"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="My Skills and Education"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorBlack"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Description of me"
-                    android:textColor="@color/colorBlack"/>
+                    android:text="Degree"
+                    android:textColor="@color/colorBlack" />-->
 
 
             </LinearLayout>

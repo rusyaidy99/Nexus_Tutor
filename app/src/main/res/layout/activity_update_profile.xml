@@ -9,20 +9,21 @@
 
 
     <Button
-        android:id="@+id/btn_register"
+        android:id="@+id/btn_update_user"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/white_btn_shadow"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-
         android:text="UPDATE ACCOUNT"
         android:textColor="#A9A9A9"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_phone" />
+        app:layout_constraintTop_toBottomOf="@+id/et_city" />
 
     <EditText
         android:id="@+id/et_phone"
@@ -38,8 +39,9 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#60FFFFFF"
         android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/btn_register"
-        app:layout_constraintStart_toStartOf="@+id/btn_register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_confirm" />
 
     <TextView
@@ -51,29 +53,67 @@
         android:textColor="#FFFFFF"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/et_phone"
-        app:layout_constraintTop_toBottomOf="@+id/et_location" />
-
-    <TextView
-        android:id="@+id/lbl_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="PASSWORD"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="@+id/et_location"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_gender" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="GENDER"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="@+id/spinner_gender"
         app:layout_constraintTop_toBottomOf="@+id/et_email" />
+
+    <EditText
+        android:id="@+id/et_city"
+        android:layout_width="140dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/round_textbox"
+        android:ems="10"
+        android:hint="City"
+        android:inputType="textPersonName"
+        android:paddingLeft="15sp"
+        android:paddingRight="15sp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#60FFFFFF"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.214"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_city" />
+
+    <TextView
+        android:id="@+id/lbl_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="CITY"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/et_phone"
+        app:layout_constraintTop_toBottomOf="@+id/et_phone" />
+
+    <EditText
+        android:id="@+id/et_state_edit"
+        android:layout_width="140dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/round_textbox"
+        android:ems="10"
+        android:hint="State"
+        android:inputType="textPersonName"
+        android:paddingLeft="15sp"
+        android:paddingRight="15sp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#60FFFFFF"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/et_city"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_city" />
+
+    <TextView
+        android:id="@+id/lbl_state_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="STATE"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/et_city"
+        app:layout_constraintTop_toBottomOf="@+id/et_phone" />
 
     <TextView
         android:id="@+id/lbl_email"
@@ -90,7 +130,7 @@
         android:id="@+id/lbl_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="8dp"
         android:text="FULL NAME"
         android:textColor="#FFFFFF"
@@ -98,35 +138,6 @@
         app:layout_constraintBottom_toTopOf="@+id/et_name"
         app:layout_constraintStart_toStartOf="@+id/et_name"
         app:layout_constraintTop_toBottomOf="@+id/lbl_register" />
-
-    <EditText
-        android:id="@+id/et_location"
-        android:layout_width="300dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/round_textbox"
-        android:ems="10"
-        android:hint="Address Location"
-        android:inputType="textPersonName"
-        android:paddingLeft="15sp"
-        android:paddingRight="15sp"
-        android:password="true"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#60FFFFFF"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="@+id/lbl_confirm"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_password" />
-
-    <Spinner
-        android:id="@+id/spinner_gender"
-        android:layout_width="300dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/round_textbox"
-        android:drawableEnd="@drawable/ic_arrow_drop_down_black_24dp"
-        android:dropDownWidth="match_parent"
-        app:layout_constraintStart_toStartOf="@+id/lbl_password"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
         android:id="@+id/et_email"
@@ -141,7 +152,8 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#60FFFFFF"
         android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_email" />
 
     <EditText
@@ -158,7 +170,8 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#60FFFFFF"
         android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="@+id/lbl_email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_name" />
 
     <TextView

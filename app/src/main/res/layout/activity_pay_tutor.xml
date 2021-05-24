@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity_pay_tutor">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_box_shadow"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/lbl_pay_tutor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pay Tutor"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbar7"
+            app:layout_constraintEnd_toEndOf="@+id/toolbar7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/toolbar7" />
+
+        <ImageButton
+            android:id="@+id/img_btn_back"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbar7"
+            app:layout_constraintStart_toStartOf="@+id/toolbar7"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_chevron_left_black_24dp" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="My Session Details"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar7" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circleImg_profile_pay"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/profile_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/colorBlack"
+            android:text="Tutor Name"
+            app:layout_constraintStart_toEndOf="@+id/circleImg_profile_pay"
+            app:layout_constraintTop_toTopOf="@+id/circleImg_profile_pay" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/colorBlack"
+            android:layout_marginTop="8dp"
+            android:text="Session Started"
+            app:layout_constraintStart_toEndOf="@+id/circleImg_profile_pay"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pay_name" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/colorBlack"
+            android:layout_marginTop="8dp"
+            android:text="Subject Registered"
+            app:layout_constraintStart_toEndOf="@+id/circleImg_profile_pay"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pay_session_date" />
+
+        <TextView
+            android:id="@+id/tv_pay_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            app:layout_constraintEnd_toEndOf="@+id/circleImg_profile_pay"
+            app:layout_constraintStart_toStartOf="@+id/circleImg_profile_pay"
+            app:layout_constraintTop_toBottomOf="@+id/circleImg_profile_pay" />
+
+        <TextView
+            android:id="@+id/tv_pay_name"
+            android:layout_width="224dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="16dp"
+            android:text="Tutor Name"
+            app:layout_constraintStart_toEndOf="@+id/circleImg_profile_pay"
+            app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+        <TextView
+            android:id="@+id/tv_pay_session_date"
+            android:layout_width="224dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="16dp"
+            android:text="Tutor Name"
+            app:layout_constraintStart_toEndOf="@+id/circleImg_profile_pay"
+            app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+        <TextView
+            android:id="@+id/tv_pay_subject"
+            android:layout_width="224dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="16dp"
+            android:text="Tutor Name"
+            app:layout_constraintStart_toEndOf="@+id/circleImg_profile_pay"
+            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+        <Button
+            android:id="@+id/btn_pay_contact"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/gray_border"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="COntact"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pay_subject" />
+
+        <ImageButton
+            android:id="@+id/img_btn_pay_report"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="39dp"
+            android:layout_height="26dp"
+
+            android:layout_marginEnd="8dp"
+            android:visibility="invisible"
+
+            app:layout_constraintBottom_toTopOf="@+id/textView15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar7"
+            app:srcCompat="@drawable/triple_dot" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview_upload_pay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_pay_contact">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_pay_session_countdown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Your session has 3 days remaining"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="380dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="32dp"
+                    android:text="*Please make sure to confirm your tutor's bank account number before proceeding your online payment"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toTopOf="@+id/btn_submit_pay"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="380dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="24dp"
+                    android:text="*Upload Payment Proof (*.pdf)"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toTopOf="@+id/textView25"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+                <TextView
+                    android:id="@+id/tv_pay_session_package"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="24dp"
+                    android:text="Total Fee (Set By Your Tutor)"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_pay_session_countdown" />
+
+                <TextView
+                    android:id="@+id/tv_pay_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="48dp"
+                    android:text="RM 200"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_pay_session_package"
+                    app:layout_constraintStart_toEndOf="@+id/tv_pay_session_package"
+                    app:layout_constraintTop_toTopOf="@+id/tv_pay_session_package" />
+
+                <Button
+                    android:id="@+id/btn_submit_pay"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/green_button_box"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Submit Payment Proof"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_cancel_pay" />
+
+                <Button
+                    android:id="@+id/btn_cancel_pay"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/gray_border"
+                    android:text="Cancel"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_imgFile"
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:text="No Uploaded File"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView18"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_upload_pay"
+                    app:layout_constraintStart_toStartOf="@+id/textView18"
+                    app:layout_constraintTop_toTopOf="@+id/textView18" />
+
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="72dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/gray_dotted_border"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_pay_session_package" />
+
+                <Button
+                    android:id="@+id/btn_upload_pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:text="Upload"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView18"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView18" />
+
+                <ImageButton
+                    android:id="@+id/img_btn_download_file"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="55dp"
+                    android:layout_height="50dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView18"
+                    app:layout_constraintEnd_toEndOf="@+id/textView18"
+                    app:layout_constraintStart_toEndOf="@+id/tv_imgFile"
+                    app:layout_constraintTop_toTopOf="@+id/textView18"
+                    app:srcCompat="@drawable/ic_baseline_download_24" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

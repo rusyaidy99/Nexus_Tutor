@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -71,16 +73,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView tv_tutorname, tv_gender;
+        public TextView tv_tutorname, tvname, tv_gender, tvgender,tv_subject, tv_subject_history;
         public ImageView img_tutor;
         public CardView cardView;
+        public Button imgBtnViewProfile;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_tutorname = (TextView) itemView.findViewById(R.id.tv_tutorname);
+            tvname = (TextView) itemView.findViewById(R.id.tv_name);
             tv_gender = (TextView) itemView.findViewById(R.id.tv_tutor_gender);
+            tvgender = (TextView) itemView.findViewById(R.id.tv_gender);
             img_tutor = (ImageView) itemView.findViewById(R.id.img_tutor);
             cardView = (CardView) itemView.findViewById(R.id.cardview_tutor);
+            tv_subject = itemView.findViewById(R.id.tv_tutor_subject);
+            imgBtnViewProfile = (Button) itemView.findViewById(R.id.imgBtn_view_profile);
 
         }
     }

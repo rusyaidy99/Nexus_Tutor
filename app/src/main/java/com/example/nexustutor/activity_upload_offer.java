@@ -21,6 +21,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class activity_upload_offer extends AppCompatActivity {
     EditText etTitle, etDescription, etSubject, etLocationCity, etLocationState;
     Button btnUpload, btnCancel;
@@ -68,9 +71,9 @@ public class activity_upload_offer extends AppCompatActivity {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String uid = mAuth.getCurrentUser().getUid();
-                Toast.makeText(activity_upload_offer.this,uid, Toast.LENGTH_LONG).show();
-               /* finish();*/
+                /*String uid = mAuth.getCurrentUser().getUid();
+                Toast.makeText(activity_upload_offer.this,uid, Toast.LENGTH_LONG).show();*/
+                finish();
             }
         });
 
@@ -89,7 +92,7 @@ public class activity_upload_offer extends AppCompatActivity {
                 String gender = radioBtn.getText().toString();
 
                 final UserOffer userOffer = new UserOffer(postId);
-                Offer offer = new Offer(uid, title, description, city, state, subject, gender);
+                Offer offer = new Offer(postId, uid, title, description, city, state, subject, gender);
                 FirebaseDatabase.getInstance().getReference("Offers").child(postId).setValue(offer).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -118,7 +121,13 @@ public class activity_upload_offer extends AppCompatActivity {
                     }
 
                 });
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat simpleTimeFormat = new SimpleDateFormat("hh-mm-ss");
+                String format = simpleDateFormat.format(new Date());
+                String format2 = simpleTimeFormat.format(new Date());
 
+                FirebaseDatabase.getInstance().getReference("Offers").child(postId).child("date").setValue(format);
+                FirebaseDatabase.getInstance().getReference("Offers").child(postId).child("time").setValue(format2);
 
 
             }
