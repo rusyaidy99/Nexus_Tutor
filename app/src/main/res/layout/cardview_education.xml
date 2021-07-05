@@ -20,6 +20,7 @@
             android:textSize="15sp"
             android:textColor="@color/colorBlack"
             android:text="Education"
+            android:fontFamily="@font/opensansregular"
             android:padding="12dp"
             tools:layout_editor_absoluteX="107dp"
             tools:layout_editor_absoluteY="133dp" />

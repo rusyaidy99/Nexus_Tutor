@@ -4,10 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -30,6 +33,8 @@ public class login_main extends AppCompatActivity implements View.OnClickListene
     TextView txtForget, btnRegister;
     ProgressBar progressBar;
     String id;
+    CheckBox checkBox;
+
 
     FirebaseAuth mAuth;
     DatabaseReference mRefTutor,mRef;
@@ -44,7 +49,9 @@ public class login_main extends AppCompatActivity implements View.OnClickListene
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
         txtForget = findViewById(R.id.lbl_btn_forgot_pass);
+        checkBox = findViewById(R.id.chbox_remember);
         progressBar = findViewById(R.id.progressBar2);
+
         mRef = FirebaseDatabase.getInstance().getReference();
         mRefTutor = FirebaseDatabase.getInstance().getReference().child("Tutors");
 
@@ -76,6 +83,36 @@ public class login_main extends AppCompatActivity implements View.OnClickListene
             }
         });
 
+        SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+        String checkbox  = preferences.getString("remember", "");
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (checkbox.equals("true")){
+                    String myId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    if (snapshot.child("Tutors").child(myId).exists()){
+
+                        Intent intent = new Intent(login_main.this,MainActivityTutor.class);
+                        startActivity(intent);
+                        finish();
+
+
+                    }else if (snapshot.child("Users").child(myId).exists()){
+                        Intent intent = new Intent(login_main.this,MainActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         //Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
@@ -119,12 +156,17 @@ public class login_main extends AppCompatActivity implements View.OnClickListene
 
                                     }
 
-                                    if (snapshot.child("Users").child(id).exists()){
+                                    else if (snapshot.child("Users").child(id).exists()){
                                         String type = snapshot.child("Users").child(id).child("acctype").getValue().toString();
                                         Intent intent = new Intent(login_main.this,MainActivity.class);
                                         startActivity(intent);
                                         finish();
                                        /* Toast.makeText(login_main.this, type, Toast.LENGTH_LONG).show();*/
+                                    }else if (!snapshot.child("Tutors").child(id).exists() && !snapshot.child("Users").child(id).exists()){
+                                        Toast.makeText(login_main.this, "Username not registered", Toast.LENGTH_LONG).show();
+                                    }
+                                    else{
+                                        Toast.makeText(login_main.this, "Username not registered", Toast.LENGTH_LONG).show();
                                     }
 
                                 }
@@ -144,11 +186,33 @@ public class login_main extends AppCompatActivity implements View.OnClickListene
                             startActivity(intent);
                             finish();*/
                         }else{
-                            Toast.makeText(login_main.this, "Login failed", Toast.LENGTH_LONG).show();
+                            Toast.makeText(login_main.this, "Username or Password did not match!", Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
+            }
+        });
+
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (compoundButton.isChecked()){
+                    SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("remember", "true");
+                    editor.apply();
+                    Toast.makeText(login_main.this, "Checked", Toast.LENGTH_SHORT).show();
+                }else if(!compoundButton.isChecked()){
+                    SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("remember", "false");
+                    editor.apply();
+                    Toast.makeText(login_main.this, "Unchecked", Toast.LENGTH_SHORT).show();
+
+                }
+
+
             }
         });
 

@@ -86,6 +86,10 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
             case R.id.item1:
                 FirebaseAuth.getInstance().signOut();
+                SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("remember", "false");
+                editor.apply();
                 startActivity(new Intent(getApplicationContext(), login_main.class));
                 finish();
                 return true;

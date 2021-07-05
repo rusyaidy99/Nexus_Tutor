@@ -12,6 +12,7 @@
     <color name="colorbg1">#5E5EC5</color>
     <color name="colorbg2">#1A098E</color>
     <color name="bar">#735FAC</color>
+    <color name="green">#93C182</color>
 
     //gradient background color
     <color name="gradcolor1">#C3BCEB</color>
@@ -31,5 +32,9 @@
     <color name="WhiteFour">#E1DBD6  </color>
     <color name="WhiteFive">#D1D1D1  </color>
 
-
+    //BluePalettes
+    <color name="blueOne">#30d5e6f7</color>
+    <color name="blueTwo">#d5adfb</color>
+    <color name="blueThree">#133072 </color>
+    <color name="blueFour">#050831 </color>
 </resources>

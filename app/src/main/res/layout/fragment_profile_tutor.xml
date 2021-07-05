@@ -8,23 +8,21 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@drawable/background_gradient"
+        android:background="@drawable/gradient_bg"
         android:layout_height="match_parent"
         tools:context=".Fragment.ProfileTutorFragment">
 
 
-        <Toolbar
+        <androidx.cardview.widget.CardView
             android:id="@+id/lbl_biodata"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:background="@drawable/white_box_shadow"
-
             android:text="About Me"
-            android:textColor="@android:color/white"
             android:textSize="24sp"
             app:autoSizeTextType="uniform"
             app:fontFamily="sans-serif-medium"
+            android:elevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,66 +30,90 @@
             >
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:gravity="center"
                 android:orientation="horizontal"
                 >
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginLeft="50dp">
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="10dp"
+                   >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_nav_search"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/colorgradient2"
                         android:text="0"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/opensansregular"
                         android:id="@+id/tv_count_subject"
                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Subject(s) Teach"
-                        android:textColor="@color/colorBlack"/>
+                        android:background="@drawable/background_text"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:fontFamily="@font/opensansregular"
+                        android:textColor="@color/whiteOne"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginLeft="100dp">
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginBottom="10dp"
+                    >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_nav_search"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/colorgradient2"
                         android:text="0"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/opensansregular"
                         android:id="@+id/tv_count_student"
                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Student(s)"
-                        android:textColor="@color/colorBlack"/>
+                        android:background="@drawable/background_text"
+
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:fontFamily="@font/opensansregular"
+                        android:textColor="@color/whiteOne"/>
                 </LinearLayout>
 
             </LinearLayout>
 
-        </Toolbar>
+        </androidx.cardview.widget.CardView>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_profile_tutor"
-            android:layout_width="122dp"
-            android:layout_height="122dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="131dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="32dp"
+            android:elevation="30dp"
+            android:src="@drawable/nopicture"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-            android:src="@drawable/profile_icon"
-            app:civ_border_width="2dp"
+
             />
 
         <androidx.cardview.widget.CardView
@@ -100,7 +122,7 @@
             android:layout_height="wrap_content"
             android:foregroundGravity="center_vertical|center|center_horizontal"
             app:cardCornerRadius="8dp"
-            app:cardElevation="16dp"
+
             app:layout_constraintBottom_toTopOf="@+id/tv_gender1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -115,7 +137,7 @@
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="2"
-
+            android:fontFamily="@font/opensansregular"
             android:text="Male"
             android:textColor="@color/colorWhite"
             android:textSize="15sp"
@@ -130,13 +152,14 @@
             android:gravity="center"
             android:layout_height="wrap_content"
             android:text="Nama Pelajar"
+            android:fontFamily="@font/opensansregular"
             android:textColor="@color/colorWhite"
             android:shadowColor="@color/colorBlack"
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="2"
-            android:textSize="30sp"
-            android:textStyle="bold"
+            android:textSize="20sp"
+
             app:fontFamily="sans-serif-medium"
             app:layout_constraintEnd_toEndOf="@+id/cardView"
             app:layout_constraintStart_toStartOf="@+id/cardView"
@@ -158,11 +181,7 @@
             android:id="@+id/cardView2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_marginTop="8dp"
 
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lbl_biodata">
@@ -170,15 +189,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-
-                android:layout_marginBottom="10dp"
+                android:background="@color/blueOne"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="80"
+                    android:layout_gravity="left"
+                    android:gravity="left"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
                     android:orientation="vertical">
@@ -188,107 +207,125 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
                         android:text="ABOUT ME"
-                        android:textColor="@color/colorBlack"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/opensansregular"
+                        android:textColor="@color/blueFour"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    //Name
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
 
-                        android:text="Full Name" />
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:fontFamily="@font/opensansregular"
+                            android:text="Full Name \n" />
+                        <TextView
+                            android:id="@+id/tv_name"
+                            android:layout_width="230dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensansregular"
+                            android:text="Undefined"
+                            android:layout_marginStart="20dp"
+                            android:textColor="@color/colorBlack" />
+                    </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    //Email
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:fontFamily="@font/opensansregular"
+                            android:text="Email \n " />
+                        <TextView
+                            android:id="@+id/tv_email"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensansregular"
+                            android:text="Ahmad@gmail.com"
+                            android:layout_marginStart="50dp"
+                            android:textColor="@color/colorBlack" />
+                    </LinearLayout>
 
-                        android:text="Email" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
+                    //Gender
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:fontFamily="@font/opensansregular"
+                            android:text="Gender \n " />
+                        <TextView
+                            android:id="@+id/tv_gender2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensansregular"
+                            android:text="Male"
+                            android:layout_marginStart="36dp"
+                            android:textColor="@color/colorBlack" />
+                    </LinearLayout>
 
-                        android:text="Gender" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
+                    //Phone
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-
-                        android:text="Phone No." />
-
-                    <TextView
-                        android:layout_width="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:fontFamily="@font/opensansregular"
+                            android:text="Phone No. \n " />
+                        <TextView
+                            android:id="@+id/tv_phone_number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensansregular"
+                            android:text="Update your Phone Number"
+                            android:layout_marginStart="17dp"
+                            android:textColor="@color/colorBlack" />
+                    </LinearLayout>
+                    //Acc
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:fontFamily="@font/opensansregular"
+                            android:text="Acc. Type \n " />
+                        <TextView
+                            android:id="@+id/tv_acc_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensansregular"
+                            android:text="Student/Parent"
+                            android:layout_marginStart="24dp"
+                            android:textColor="@color/colorBlack" />
+                    </LinearLayout>
 
-                        android:text="Acc. Type" />
 
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack" />
-
-                    <TextView
-                        android:id="@+id/tv_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:text="Ahmad"
-                        android:textColor="@color/colorBlack" />
-                    />
-
-                    <TextView
-                        android:id="@+id/tv_email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:text="Ahmad@gmail.com"
-                        android:textColor="@color/colorBlack" />
-
-                    <TextView
-                        android:id="@+id/tv_gender2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:text="Male"
-                        android:textColor="@color/colorBlack" />
-
-                    <TextView
-                        android:id="@+id/tv_phone_number"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:text="Update your Phone Number"
-                        android:textColor="@color/colorBlack" />
-
-                    <TextView
-                        android:id="@+id/tv_acc_type"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:text="Student/Parent"
-                        android:textColor="@color/colorBlack" />
-                    />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
                     android:layout_gravity="right"
                     android:gravity="right"
+                    android:layout_weight="0"
+                    android:layout_marginTop="10dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
                     <ImageButton
@@ -296,7 +333,9 @@
                         style="?android:attr/borderlessButtonStyle"
                         android:layout_width="53dp"
                         android:layout_height="30dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginRight="5dp"
+                        android:background="@drawable/background_text_no_border"
                         android:src="@drawable/ic_baseline_edit_24" />
                 </LinearLayout>
 
@@ -308,9 +347,6 @@
             android:id="@id/cardView_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:background="@drawable/white_box_shadow"
-            app:cardCornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView2">
@@ -318,11 +354,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:orientation="horizontal"
+                android:background="@color/blueOne"
+
                 android:padding="5dp">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:orientation="vertical"
                     android:padding="10dp">
 
@@ -331,7 +372,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="DESCRIPTION"
-                        android:textColor="@color/colorBlack"
+                        android:fontFamily="@font/opensansregular"
+                        android:textColor="@color/blueFour"
                         android:textSize="15sp"
                         android:textStyle="bold" />
                     <TextView
@@ -339,6 +381,7 @@
                         android:layout_width="310dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:fontFamily="@font/opensansregular"
                         android:text="Update your description"
                         android:textColor="@color/colorBlack"
                         android:textSize="15sp" />
@@ -369,9 +412,9 @@
             android:id="@id/cardView_subject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:elevation="10dp"
             android:background="@drawable/white_box_shadow"
-            app:cardCornerRadius="8dp"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView_description">
@@ -379,17 +422,50 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/blueOne"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="12dp">
 
                 <TextView
                     android:id="@+id/lbl_subject"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="SUBJECT I TEACH"
-                    android:textColor="@color/colorBlack"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/opensansregular"
+                    android:textColor="@color/blueFour"
                     android:textSize="15sp"
                     android:textStyle="bold" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_margin="10dp"
+                    android:layout_marginRight="3dp"
+                    android:id="@+id/cardView_sub"
+                    app:cardCornerRadius="4dp"
+                    android:layout_height="50dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/tv_subject"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="15sp"
+                            android:fontFamily="@font/opensansregular"
+                            android:textColor="@color/colorBlack"
+                            android:text="No Subject Added Yet "
+                            android:padding="12dp"
+                            tools:layout_editor_absoluteX="107dp"
+                            tools:layout_editor_absoluteY="133dp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recylerview_subject"
@@ -403,8 +479,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/opensansregular"
                     android:layout_marginTop="5dp"
-                    android:background="@drawable/black_round_border"
+                    android:background="@drawable/black_round_border2"
                     android:text="Add"
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp" />
@@ -417,9 +495,7 @@
             android:id="@+id/cardView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:background="@drawable/white_box_shadow"
-            app:cardCornerRadius="8dp"
+            android:elevation="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -429,16 +505,48 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:background="@color/blueOne"
+                android:padding="12dp">
 
                 <TextView
                     android:id="@+id/lbl_education"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/opensansregular"
                     android:text="MY SKILLS &amp; EDUCATION"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/blueFour"
                     android:textSize="15sp"
                     android:textStyle="bold" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_margin="10dp"
+                    android:layout_marginRight="3dp"
+                    android:id="@+id/cardView_edu"
+                    app:cardCornerRadius="4dp"
+                    android:layout_height="50dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="15sp"
+                            android:fontFamily="@font/opensansregular"
+                            android:textColor="@color/colorBlack"
+                            android:text="No Skills/Educations Added Yet "
+                            android:padding="12dp"
+                            tools:layout_editor_absoluteX="107dp"
+                            tools:layout_editor_absoluteY="133dp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerview_education"
@@ -452,8 +560,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/opensansregular"
                     android:layout_marginTop="5dp"
-                    android:background="@drawable/black_round_border"
+                    android:background="@drawable/black_round_border2"
                     android:text="Add"
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp" />
@@ -479,6 +589,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Profile"
+            android:fontFamily="@font/opensansregular"
             android:textColor="@color/colorBlack"
             android:textStyle="bold"
             android:textSize="24sp"

@@ -88,12 +88,14 @@ public class activity_tutor_request extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         final String name = snapshot.child(tid).child("fullname").getValue().toString();
                         final String gender = snapshot.child(tid).child("gender").getValue().toString();
-                        final String image =snapshot.child(tid).child("image").getValue().toString();
-
+                        if (snapshot.child(tid).child("image").exists()){
+                            String image =snapshot.child(tid).child("image").getValue().toString();
+                            Picasso.get().load(image).into(myViewHolder.img_tutor);
+                        }
 
                         myViewHolder.tvname.setText(name);
                         myViewHolder.tvgender.setText(gender);
-                        Picasso.get().load(image).into(myViewHolder.img_tutor);
+
                         myViewHolder.imgBtnViewProfile.setOnClickListener(new View.OnClickListener() {
 
                             @Override
@@ -102,8 +104,11 @@ public class activity_tutor_request extends AppCompatActivity {
                                 intent.putExtra("uid", tid);
                                 intent.putExtra("Name", name);
                                 intent.putExtra("Gender", gender);
-                                intent.putExtra("image", image);
-
+                                if (snapshot.child(tid).child("image").exists()){
+                                    String image =snapshot.child(tid).child("image").getValue().toString();
+                                    intent.putExtra("image", image);
+                                }else
+                                    intent.putExtra("image", "");
                                 /*intent.putExtra("Email", mData.get(position).getEmail());*/
                                 startActivity(intent);
                             }

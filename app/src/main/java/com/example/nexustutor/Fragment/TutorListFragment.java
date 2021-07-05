@@ -131,6 +131,7 @@ public class TutorListFragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull final HistoryStudentRecyclerAdapter.MyViewHolder myViewHolder, int i, @NonNull final Session session) {
                 final String studentID = session.getUid();
+                final String tutorID = session.getTid();
                 String status = session.getStatus();
 
                 final String[] name = new String[1];
@@ -166,7 +167,7 @@ public class TutorListFragment extends Fragment {
 
                 myViewHolder.mActiveDate.setText("" + session.getDate());
 
-                DatabaseReference studentRef = FirebaseDatabase.getInstance().getReference("Users").child(studentID);
+                DatabaseReference studentRef = FirebaseDatabase.getInstance().getReference("Tutors").child(tutorID);
                 studentRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

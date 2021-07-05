@@ -24,7 +24,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class activity_confirm_requests extends AppCompatActivity {
@@ -106,14 +108,53 @@ public class activity_confirm_requests extends AppCompatActivity {
 
                 final String[] name = new String[1];
                 final String[] gender = new String[1];
-                String Location;
-                String Subject;
-                String time;
+
 
                 final DatabaseReference mStudentRef= FirebaseDatabase.getInstance().getReference("Users").child(studentID);
                 mStudentRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.child("image").exists()){
+                            Picasso.get().load(snapshot.child("image").getValue().toString()).into(myViewHolder.imgProfile);
+                        }
+                        else{
+                            Picasso.get().load(R.drawable.profile_icon).into(myViewHolder.imgProfile);
+                        }
+
+
+                        if (snapshot.child("city").exists() && snapshot.child("state").exists() & !snapshot.child("state").getValue().equals("") && !snapshot.child("city").getValue().equals("")){
+                            String Location = snapshot.child("city").getValue().toString() + ", " + snapshot.child("state").getValue().toString();
+                            myViewHolder.mLocation.setText("" + Location);
+                        }
+                        DatabaseReference myrefSubject = FirebaseDatabase.getInstance().getReference();
+                        DatabaseReference subjectRef = myrefSubject.child("Tutors").child(session.getTid()).child("Subjects");
+                        final ArrayList subjects = new ArrayList<>();
+
+                        subjectRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for (DataSnapshot ds:snapshot.getChildren()){
+                                    String data = ds.child("mySubject").getValue(String.class);
+                                    subjects.add("" + String.valueOf(data));
+
+                                }
+                                String countt = String.valueOf(snapshot.getChildrenCount());
+                                Log.d("subject", countt );
+                                String subjectlist = Arrays.toString(subjects.toArray()).replace("[", "").replace("]", "").trim();
+                                if (subjectlist.equals(""))
+                                    myViewHolder.mSubject.setText("Subject Unavailable");
+                                else
+                                    myViewHolder.mSubject.setText(subjectlist);
+
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+                        myViewHolder.mDate.setText("" + session.getDate());
+
                         name[0] = snapshot.child("fullname").getValue().toString();
                         gender[0] = snapshot.child("gender").getValue().toString();
                         Log.d("name, gender", Arrays.toString(name) + ", " + Arrays.toString(gender));

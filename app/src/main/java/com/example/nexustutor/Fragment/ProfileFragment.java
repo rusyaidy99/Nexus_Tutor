@@ -40,7 +40,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
 
-    TextView mUsername, mName, mEmail, mGender, mPhone, mType, CountPost, CountSession;
+    TextView mUsername, mName, mEmail, mGender, mGender2, mPhone, mType, CountPost, CountSession;
     ImageButton btn_update_profile;
     CircleImageView img_profile;
     FirebaseAuth mAuth;
@@ -89,6 +89,7 @@ public class ProfileFragment extends Fragment {
         mName = profileView.findViewById(R.id.tv_name);
         mEmail = profileView.findViewById(R.id.tv_email);
         mGender = profileView.findViewById(R.id.tv_gender1);
+        mGender2 = profileView.findViewById(R.id.tv_gender2);
         mPhone = profileView.findViewById(R.id.tv_phone_number);
         mType = profileView.findViewById(R.id.tv_acc_type);
         btn_update_profile = profileView.findViewById(R.id.btn_update_profile);
@@ -119,13 +120,19 @@ public class ProfileFragment extends Fragment {
                 //Profile Gender
                 String user_gender = snapshot.child("gender").getValue(String.class);
                 mGender.setText(user_gender);
+                mGender2.setText(user_gender);
 
                 //Profile Type
                 String user_acctype = snapshot.child("acctype").getValue(String.class);
                 mType.setText(user_acctype);
 
-                String user_phone = snapshot.child("phone").getValue(String.class);
-                mPhone.setText(user_phone);
+                if (snapshot.child("phone").exists()){
+                    String user_phone = snapshot.child("phone").getValue(String.class);
+                    mPhone.setText(user_phone);
+                }else{
+                    mPhone.setText("Please update your phone number");
+                }
+
 
 
                 int countAct = (int) snapshot.child("Sessions").child("Actives").getChildrenCount();

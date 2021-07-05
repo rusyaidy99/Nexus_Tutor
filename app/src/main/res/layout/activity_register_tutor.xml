@@ -51,7 +51,7 @@
             android:layout_height="35dp"
             android:layout_marginTop="12dp"
             android:background="@drawable/round_textbox"
-            android:drawableEnd="@drawable/ic_remove_red_eye_black_24dp"
+            
             android:ems="10"
             android:hint="Confirm Password"
             android:inputType="textPersonName"
@@ -117,7 +117,7 @@
             android:layout_height="35dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/round_textbox"
-            android:drawableEnd="@drawable/ic_remove_red_eye_black_24dp"
+
             android:ems="10"
             android:hint="Password"
             android:inputType="textPersonName"

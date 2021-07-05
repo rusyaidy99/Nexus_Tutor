@@ -22,7 +22,8 @@
             android:layout_height="100dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:src="@drawable/profile_icon"
+
+            android:src="@drawable/nopicture"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,6 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="Mr.John"
+            android:fontFamily="@font/opensansregular"
             android:textColor="@color/colorBlack"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -43,6 +45,7 @@
             android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:text="International Language (French)"
+            android:fontFamily="@font/opensansregular"
 
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/tv_active_name"
@@ -53,6 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/opensansregular"
             android:text="Started Session"
             android:textColor="@color/colorBlack"
             android:textSize="16sp"
@@ -63,7 +67,7 @@
             android:id="@+id/tv_active_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:fontFamily="@font/opensansregular"
             android:text="1/1/2020"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/lbl_date"
@@ -76,9 +80,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="140dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/green_border_box"
+            android:background="@drawable/contact_button_box"
             android:text="Contact"
-            android:textColor="#8D8D8D"
+            android:fontFamily="@font/opensansregular"
+            android:textColor="@color/whiteOne"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -91,6 +97,7 @@
             android:layout_marginEnd="16dp"
             android:background="@drawable/radio_selected"
             android:text="Not Paid"
+            android:fontFamily="@font/opensansregular"
             android:textColor="@color/colorWhite"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"

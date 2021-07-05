@@ -1,6 +1,8 @@
 package com.example.nexustutor.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.nexustutor.Fragment.ProfileTutorFragment;
 import com.example.nexustutor.Offer;
 import com.example.nexustutor.R;
 
@@ -82,9 +85,12 @@ public class SubjectRecyclerViewAdapter extends RecyclerView.Adapter<SubjectRecy
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.hasChild(mData.get(position).getMySubject()))
                             reference.child(mData.get(position).getMySubject()).removeValue();
-                        Toast.makeText(mContext, "Subject Removed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "a Subject was Removed", Toast.LENGTH_SHORT).show();
                         Log.d("subjek", "success");
+
+
                     }
+
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {

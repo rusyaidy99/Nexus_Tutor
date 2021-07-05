@@ -69,9 +69,7 @@ public class EducationRecyclerViewAdapter extends RecyclerView.Adapter<Education
             }
         });
         /* Subjek subjek = mData.get(position);*/
-        holder.cardViewEducation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+
                 holder.removeEducation.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -81,7 +79,7 @@ public class EducationRecyclerViewAdapter extends RecyclerView.Adapter<Education
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 if (snapshot.hasChild(mData.get(position).getEducation()))
                                     reference.child(mData.get(position).getEducation()).removeValue();
-                                Toast.makeText(mContext, "Education Removed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mContext, "a Skill/Education was Removed", Toast.LENGTH_SHORT).show();
                                 Log.d("education", "success");
                             }
 
@@ -92,8 +90,8 @@ public class EducationRecyclerViewAdapter extends RecyclerView.Adapter<Education
                         });
                     }
                 });
-            }
-        });
+
+
 
     }
 

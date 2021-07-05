@@ -8,6 +8,8 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -43,6 +45,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -63,6 +66,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileTutorFragment extends Fragment implements MyCustomDialogSubject.OnSubjectSelected, MyCustomDialogEducation.OnEducationSelected {
     private static final String TAG = "ProfileTutorFragment";
     public TextView mUsername, mName, mEmail, mGender, mPhone, mType, mLocation, mDescription, mCountStudent, mCountSubject;
+    public CardView cardSub, cardEdu;
     ImageButton btn_update_profile, btn_update_description;
     CircleImageView img_profile;
     FirebaseAuth mAuth;
@@ -122,6 +126,9 @@ public class ProfileTutorFragment extends Fragment implements MyCustomDialogSubj
         btn_update_profile = profileTutorView.findViewById(R.id.btn_update_profile);
         btn_update_description = profileTutorView.findViewById(R.id.btn_update_description);
 
+
+        cardEdu = profileTutorView.findViewById(R.id.cardView_edu);
+        cardSub= profileTutorView.findViewById(R.id.cardView_sub);
         mCountStudent = profileTutorView.findViewById(R.id.tv_count_student);
         mCountSubject = profileTutorView.findViewById(R.id.tv_count_subject);
 
@@ -196,11 +203,68 @@ public class ProfileTutorFragment extends Fragment implements MyCustomDialogSubj
         });
 
         DatabaseReference subjectRef = myrefSubject.child("Tutors").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Subjects");
+        subjects = new ArrayList<Subjek>();
+        subjectRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                if (snapshot.exists()){
+                    getAllSubject(snapshot);
+                    if (snapshot.getChildrenCount()>0){
+                        cardSub.setVisibility(View.GONE);
+                    }
+                }if (subjects.size()==0){
+                    cardSub.setVisibility(View.VISIBLE);
 
-        subjects = new ArrayList<>();
-        subjectRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                }
+
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                if (snapshot.exists()){
+                    getAllSubject(snapshot);
+
+                    if (snapshot.getChildrenCount()>0){
+                        cardSub.setVisibility(View.GONE);
+                    }
+                }
+                if (subjects.size()==0){
+                    cardSub.setVisibility(View.VISIBLE);
+
+                }
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    subjectDeletion(snapshot);
+                    if (snapshot.getChildrenCount()>0){
+                        cardSub.setVisibility(View.GONE);
+                    }
+                }
+                if (subjects.size()==0){
+                    cardSub.setVisibility(View.VISIBLE);
+
+                }
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        /*subjectRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                subjects = new ArrayList<>();
                 mCountSubject.setText("" + snapshot.getChildrenCount());
                 for (DataSnapshot ds:snapshot.getChildren()){
                     Subjek data = ds.getValue(Subjek.class);
@@ -215,12 +279,65 @@ public class ProfileTutorFragment extends Fragment implements MyCustomDialogSubj
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        });*/
 
         DatabaseReference educationRef = myrefSubject.child("Tutors").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Educations");
 
         educations = new ArrayList<>();
-        educationRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        educationRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+               if (snapshot.exists()){
+                   getAllEducation(snapshot);
+                   if (educations.size()>0){
+                       cardEdu.setVisibility(View.GONE);
+                   }
+               }
+                if (educations.size()==0){
+                    cardEdu.setVisibility(View.VISIBLE);
+
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                if (snapshot.exists()){
+                    getAllEducation(snapshot);
+                    if (educations.size()>0){
+                        cardEdu.setVisibility(View.GONE);
+                    }
+                }
+                if (educations.size()==0){
+                    cardEdu.setVisibility(View.VISIBLE);
+
+                }
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    EducationDeletion(snapshot);
+                    if (educations.size()>0){
+                        cardEdu.setVisibility(View.GONE);
+                    }
+                }
+                if (educations.size()==0){
+                    cardEdu.setVisibility(View.VISIBLE);
+
+                }
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        /*educationRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds:snapshot.getChildren()){
@@ -235,66 +352,11 @@ public class ProfileTutorFragment extends Fragment implements MyCustomDialogSubj
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
-        //Try Manual Recyclerview
-        /*subjects = new ArrayList<>();
-        final List<String> test = new ArrayList<>();
-        ValueEventListener eventListener = new ValueEventListener() {
+        });*/
 
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-
-                for (DataSnapshot ds : snapshot.getChildren()){
-                    String subjectx = ds.getKey();
-                   *//* subjects.add(subjectx);*//*
-                    test.add(subjectx);
-                }
-
-                *//*Log.d(TAG, test.toString());*//*
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        };
-        subjectRef.addListenerForSingleValueEvent(eventListener);*/
-
-        /*for (int i=0; i<test.size(); i++){
-            subjects.add(test.get(i));
-        }
-        Log.d(TAG, subjects.toString());
-        adapter = new SubjectRecyclerViewAdapter(getActivity(),subjects);*/
-
-
-        //recyclerview subject adapter manual
-
-       /* recyclerViewSubject.setAdapter(adapter);*/
 
         Log.d(TAG, myquery.toString());
 
-        /*DatabaseReference mRef = databaseReference.child(id).child("Subjects").child("Geografi");
-
-        optionsSubject = new FirebaseRecyclerOptions.Builder<Subjek>().setQuery(myquery, Subjek.class).build();
-        adapterSubject = new FirebaseRecyclerAdapter<Subjek, SubjectRecyclerViewAdapter.MyViewHolder>(optionsSubject) {
-            @Override
-            protected void onBindViewHolder(@NonNull SubjectRecyclerViewAdapter.MyViewHolder myViewHolder, int i, @NonNull Subjek subject) {
-                myViewHolder.etsubject.setText("" + subject.getMySubject());
-                Toast.makeText(getContext(),""+subject.getMySubject(),Toast.LENGTH_LONG).show();
-            }
-
-            @NonNull
-            @Override
-            public SubjectRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_subject,parent, false);
-                return new SubjectRecyclerViewAdapter.MyViewHolder(v);
-            }
-        };
-        adapterSubject.startListening();
-        recyclerViewSubject.setAdapter(adapterSubject);*/
 
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
@@ -322,8 +384,13 @@ public class ProfileTutorFragment extends Fragment implements MyCustomDialogSubj
                 mLocation.setText(user_location);
 
                 //Profile Description
-                String user_description = snapshot.child("description").getValue(String.class);
-                mDescription.setText(user_description);
+                if ( snapshot.child("description").exists()){
+                    String user_description = snapshot.child("description").getValue(String.class);
+                    mDescription.setText(user_description);
+                }else if(snapshot.child("description").equals("") || !snapshot.child("description").exists()){
+                    mDescription.setText("Update Your description to gain your visitors' trust to hire you");
+                }
+
 
                 //Profile Type
                 String user_acctype = snapshot.child("acctype").getValue(String.class);
@@ -367,8 +434,66 @@ public class ProfileTutorFragment extends Fragment implements MyCustomDialogSubj
         return profileTutorView;
     }
 
+    private void ifContentEmpty(DataSnapshot snapshot) {
+        if (!snapshot.exists()){
+            cardEdu.setVisibility(View.VISIBLE);
+        }else if (snapshot.getChildrenCount()>0){
+            cardEdu.setVisibility(View.GONE);
+        }
+    }
 
-//profilepic
+    private void EducationDeletion(DataSnapshot snapshot) {
+        for (DataSnapshot singlesnapshot : snapshot.getChildren()){
+            String taskTitle = singlesnapshot.getValue(String.class);
+            for (int i =0; i< educations.size(); i++){
+                if (educations.get(i).getEducation().equals(taskTitle)){
+                    educations.remove(i);
+                }
+            }
+            Log.d(TAG, "Task Title" + taskTitle);
+            adapter2.notifyDataSetChanged();
+            adapter2 = new EducationRecyclerViewAdapter(getContext(), educations);
+            recyclerViewEducation.setAdapter(adapter2);
+        }
+
+
+    }
+
+    private void getAllEducation(DataSnapshot snapshot) {
+        for (DataSnapshot singlesnapshot : snapshot.getChildren()){
+            String TaskTitle = singlesnapshot.getValue(String.class);
+            educations.add(new Education(TaskTitle));
+            adapter2 = new EducationRecyclerViewAdapter(getContext(), educations);
+            recyclerViewEducation.setAdapter(adapter2);
+        }
+    }
+
+    private void subjectDeletion(DataSnapshot snapshot) {
+        for (DataSnapshot singlesnapshot : snapshot.getChildren()){
+            String taskTitle = singlesnapshot.getValue(String.class);
+            for (int i =0; i< subjects.size(); i++){
+                if (subjects.get(i).getMySubject().equals(taskTitle)){
+                    subjects.remove(i);
+                }
+            }
+            Log.d(TAG, "Task Title" + taskTitle);
+            adapter.notifyDataSetChanged();
+            adapter = new SubjectRecyclerViewAdapter(getContext(), subjects);
+            recyclerViewSubject.setAdapter(adapter);
+        }
+    }
+
+    private void getAllSubject(DataSnapshot snapshot) {
+        for (DataSnapshot singlesnapshot : snapshot.getChildren()){
+            String TaskTitle = singlesnapshot.getValue(String.class);
+            subjects.add(new Subjek(TaskTitle));
+            adapter = new SubjectRecyclerViewAdapter(getContext(), subjects);
+            recyclerViewSubject.setAdapter(adapter);
+        }
+    }
+
+
+    //profilepic
     private void getUserInfo() {
         databaseReference.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -394,7 +519,7 @@ public class ProfileTutorFragment extends Fragment implements MyCustomDialogSubj
     @Override
     public void sendInput(String input) {
         /*mPhone.setText(input);*/
-        Subjek subjek = new Subjek(input, FirebaseAuth.getInstance().getCurrentUser().getUid());
+        Subjek subjek = new Subjek(input);
         FirebaseDatabase.getInstance().getReference("Tutors").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Subjects").child(input).setValue(subjek).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

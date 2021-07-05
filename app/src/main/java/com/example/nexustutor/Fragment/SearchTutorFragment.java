@@ -1,6 +1,7 @@
 package com.example.nexustutor.Fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -46,6 +47,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import retrofit2.Retrofit;
+
+import static android.content.Context.MODE_PRIVATE;
 import static com.example.nexustutor.Adapter.RecyclerViewAdapter.*;
 
 public class SearchTutorFragment extends Fragment {
@@ -57,7 +61,8 @@ public class SearchTutorFragment extends Fragment {
     private List<String> categories,year;
     private ArrayAdapter categoryAdapter,yearAdapter;
     private String catergoryString,yearString;
-
+    private String selectedFilter = "all";
+    private Spinner spinnerFilter;
     DatabaseReference ref;
 
     private FirebaseRecyclerOptions<tutor> options;
@@ -72,12 +77,19 @@ public class SearchTutorFragment extends Fragment {
 
         View searchview = inflater.inflate(R.layout.fragment_search_tutor, container, false);
 
+
+        spinnerFilter = searchview.findViewById(R.id.filterSpinner);
         ref = FirebaseDatabase.getInstance().getReference().child("Tutors");
 
         toolbar = searchview.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         setHasOptionsMenu(true);
 
+
+        ArrayAdapter<CharSequence> adapterFilter = ArrayAdapter.createFromResource(getContext(), R.array.filter,R.layout.spinner_text);
+        adapterFilter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerFilter.setAdapter(adapterFilter);
+        
        /* catSpinner = searchview.findViewById(R.id.catspinner);
         yearSpinner = searchview.findViewById(R.id.datespinner);
         filter = searchview.findViewById(R.id.filter);*/
@@ -123,6 +135,27 @@ public class SearchTutorFragment extends Fragment {
                         startActivity(intent);
                     }
                 });
+
+                DatabaseReference refLocation = FirebaseDatabase.getInstance().getReference().child("Tutors").child(tutor.getUid());
+                refLocation.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.child("city").exists() && snapshot.child("state").exists()){
+                            if (!snapshot.child("city").getValue().equals("") && !snapshot.child("state").getValue().equals("")){
+                                String location = snapshot.child("city").getValue() + ", " + snapshot.child("state").getValue();
+                                myViewHolder.tv_location.setText(location);
+                            }
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
                 DatabaseReference myrefSubject = FirebaseDatabase.getInstance().getReference();
                 DatabaseReference subjectRef = myrefSubject.child("Tutors").child(tutor.getUid()).child("Subjects");
                 final ArrayList subjects = new ArrayList<>();
@@ -167,6 +200,7 @@ public class SearchTutorFragment extends Fragment {
         };
         adapter.startListening();
         recyclerView.setAdapter(adapter);
+        recyclerView.setItemViewCacheSize(10);
         // Inflate the layout for this fragment
 
        /* catSpinner.setAdapter(categoryAdapter);
@@ -201,46 +235,199 @@ public class SearchTutorFragment extends Fragment {
 
         return searchview;
     }
+
+
     private void searchStudent(String SearchText) {
         Log.d("search", SearchText);
-        Query searchQuery = ref.orderByChild("fullname").startAt(SearchText).endAt(SearchText + "\uf8ff");
 
-        options = new FirebaseRecyclerOptions.Builder<tutor>().setQuery(searchQuery, tutor.class).build();
-        FirebaseRecyclerAdapter<tutor, MyViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<tutor, MyViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i, @NonNull final tutor tutor) {
-                myViewHolder.tv_tutorname.setText(""+ tutor.getFullname());
-                myViewHolder.tv_gender.setText(""+ tutor.getGender());
-                Picasso.get().load(tutor.getImage()).into(myViewHolder.img_tutor);
+       String searchCat = spinnerFilter.getSelectedItem().toString();
 
-
-                myViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(getActivity(), activity_view_tutor_profile.class);
-                        intent.putExtra("uid", tutor.getUid());
-                        intent.putExtra("Name", tutor.getFullname());
-                        intent.putExtra("Gender", tutor.getGender());
-                        intent.putExtra("AccType", tutor.getAcctype());
-                        intent.putExtra("image", tutor.getImage());
-
-                        /*intent.putExtra("Email", mData.get(position).getEmail());*/
-                        startActivity(intent);
-                    }
-                });
+       if(!searchCat.isEmpty()){
+           Query searchQuery = ref.orderByChild(searchCat).startAt(SearchText).endAt(SearchText + "\uf8ff");
+           options = new FirebaseRecyclerOptions.Builder<tutor>().setQuery(searchQuery, tutor.class).build();
+           FirebaseRecyclerAdapter<tutor, MyViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<tutor, MyViewHolder>(options) {
+               @Override
+               protected void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i, @NonNull final tutor tutor) {
+                   myViewHolder.tv_tutorname.setText(""+ tutor.getFullname());
+                   myViewHolder.tv_gender.setText(""+ tutor.getGender());
+                   Picasso.get().load(tutor.getImage()).into(myViewHolder.img_tutor);
 
 
-            }
+                   myViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
+                       @Override
+                       public void onClick(View view) {
+                           Intent intent = new Intent(getActivity(), activity_view_tutor_profile.class);
+                           intent.putExtra("uid", tutor.getUid());
+                           intent.putExtra("Name", tutor.getFullname());
+                           intent.putExtra("Gender", tutor.getGender());
+                           intent.putExtra("AccType", tutor.getAcctype());
+                           intent.putExtra("image", tutor.getImage());
 
-            @NonNull
-            @Override
-            public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_search,parent, false);
-                return new MyViewHolder(v);
-            }
-        };
-        firebaseRecyclerAdapter.startListening();
-        recyclerView.setAdapter(firebaseRecyclerAdapter);
+                           /*intent.putExtra("Email", mData.get(position).getEmail());*/
+                           startActivity(intent);
+                       }
+                   });
+
+
+                   DatabaseReference refLocation = FirebaseDatabase.getInstance().getReference().child("Tutors").child(tutor.getUid());
+                   refLocation.addListenerForSingleValueEvent(new ValueEventListener() {
+                       @Override
+                       public void onDataChange(@NonNull DataSnapshot snapshot) {
+                           if (snapshot.child("city").exists() && snapshot.child("state").exists()){
+                               if (!snapshot.child("city").getValue().equals("") && !snapshot.child("state").getValue().equals("")){
+                                   String location = snapshot.child("city").getValue() + ", " + snapshot.child("state").getValue();
+                                   myViewHolder.tv_location.setText(location);
+                               }
+
+                           }
+
+                       }
+
+                       @Override
+                       public void onCancelled(@NonNull DatabaseError error) {
+
+                       }
+                   });
+
+                   DatabaseReference myrefSubject = FirebaseDatabase.getInstance().getReference();
+                   DatabaseReference subjectRef = myrefSubject.child("Tutors").child(tutor.getUid()).child("Subjects");
+                   final ArrayList subjects = new ArrayList<>();
+
+                   subjectRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                       @Override
+                       public void onDataChange(@NonNull DataSnapshot snapshot) {
+                           for (DataSnapshot ds:snapshot.getChildren()){
+                               String data = ds.child("mySubject").getValue(String.class);
+                               subjects.add("" + String.valueOf(data));
+
+                           }
+                           String countt = String.valueOf(snapshot.getChildrenCount());
+                           Log.d("subject", countt );
+                           String subjectlist = Arrays.toString(subjects.toArray()).replace("[", "").replace("]", "").trim();
+                           if (subjectlist.equals(""))
+                               myViewHolder.tv_subject.setText("No Subject Added");
+                           else
+                               myViewHolder.tv_subject.setText(subjectlist);
+
+                /*Long tsLong = System.currentTimeMillis()/1000;
+                String ts = tsLong.toString();
+                Log.d("timestamp", ts);*/
+
+
+                       }
+                       @Override
+                       public void onCancelled(@NonNull DatabaseError error) {
+
+                       }
+                   });
+
+               }
+
+               @NonNull
+               @Override
+               public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                   View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_search,parent, false);
+                   return new MyViewHolder(v);
+               }
+           };
+           firebaseRecyclerAdapter.startListening();
+           recyclerView.setAdapter(firebaseRecyclerAdapter);
+
+       }else {
+           Query searchQuery = ref;
+           options = new FirebaseRecyclerOptions.Builder<tutor>().setQuery(searchQuery, tutor.class).build();
+           FirebaseRecyclerAdapter<tutor, MyViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<tutor, MyViewHolder>(options) {
+               @Override
+               protected void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i, @NonNull final tutor tutor) {
+                   myViewHolder.tv_tutorname.setText(""+ tutor.getFullname());
+                   myViewHolder.tv_gender.setText(""+ tutor.getGender());
+                   Picasso.get().load(tutor.getImage()).into(myViewHolder.img_tutor);
+
+
+                   myViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
+                       @Override
+                       public void onClick(View view) {
+                           Intent intent = new Intent(getActivity(), activity_view_tutor_profile.class);
+                           intent.putExtra("uid", tutor.getUid());
+                           intent.putExtra("Name", tutor.getFullname());
+                           intent.putExtra("Gender", tutor.getGender());
+                           intent.putExtra("AccType", tutor.getAcctype());
+                           intent.putExtra("image", tutor.getImage());
+
+                           /*intent.putExtra("Email", mData.get(position).getEmail());*/
+                           startActivity(intent);
+                       }
+                   });
+
+
+                   DatabaseReference refLocation = FirebaseDatabase.getInstance().getReference().child("Tutors").child(tutor.getUid());
+                   refLocation.addListenerForSingleValueEvent(new ValueEventListener() {
+                       @Override
+                       public void onDataChange(@NonNull DataSnapshot snapshot) {
+                           if (snapshot.child("city").exists() && snapshot.child("state").exists()){
+                               if (!snapshot.child("city").getValue().equals("") && !snapshot.child("state").getValue().equals("")){
+                                   String location = snapshot.child("city").getValue() + ", " + snapshot.child("state").getValue();
+                                   myViewHolder.tv_location.setText(location);
+                               }
+
+                           }
+
+                       }
+
+                       @Override
+                       public void onCancelled(@NonNull DatabaseError error) {
+
+                       }
+                   });
+
+                   DatabaseReference myrefSubject = FirebaseDatabase.getInstance().getReference();
+                   DatabaseReference subjectRef = myrefSubject.child("Tutors").child(tutor.getUid()).child("Subjects");
+                   final ArrayList subjects = new ArrayList<>();
+
+                   subjectRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                       @Override
+                       public void onDataChange(@NonNull DataSnapshot snapshot) {
+                           for (DataSnapshot ds:snapshot.getChildren()){
+                               String data = ds.child("mySubject").getValue(String.class);
+                               subjects.add("" + String.valueOf(data));
+
+                           }
+                           String countt = String.valueOf(snapshot.getChildrenCount());
+                           Log.d("subject", countt );
+                           String subjectlist = Arrays.toString(subjects.toArray()).replace("[", "").replace("]", "").trim();
+                           if (subjectlist.equals(""))
+                               myViewHolder.tv_subject.setText("No Subject Added");
+                           else
+                               myViewHolder.tv_subject.setText(subjectlist);
+
+                /*Long tsLong = System.currentTimeMillis()/1000;
+                String ts = tsLong.toString();
+                Log.d("timestamp", ts);*/
+
+
+                       }
+                       @Override
+                       public void onCancelled(@NonNull DatabaseError error) {
+
+                       }
+                   });
+
+               }
+
+               @NonNull
+               @Override
+               public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                   View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_search,parent, false);
+                   return new MyViewHolder(v);
+               }
+           };
+           firebaseRecyclerAdapter.startListening();
+           recyclerView.setAdapter(firebaseRecyclerAdapter);
+
+       }
+
+
+
 
     }
 
@@ -249,6 +436,7 @@ public class SearchTutorFragment extends Fragment {
         inflater.inflate(R.menu.search_menu, menu);
         MenuItem item = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {

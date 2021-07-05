@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background_gradient"
+        android:background="@color/whiteOne"
         tools:context=".Fragment.StudentListFragment">
 
 
@@ -43,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Student List"
+            android:fontFamily="@font/opensansregular"
             android:textColor="@color/colorBlack"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -57,8 +58,15 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
             android:layout_marginTop="24dp"
+            android:fontFamily="@font/opensansregular"
             android:text="My Active Sesion"
-            android:textColor="@color/colorBlack"
+            android:textStyle="bold"
+            android:background="@drawable/background_text4"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/whiteOne"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar6" />
@@ -87,6 +95,7 @@
                     android:layout_marginTop="8dp"
                     android:padding="12dp"
                     android:text="You haven't got a student yet"
+                    android:fontFamily="@font/opensansregular"
                     android:textColor="@color/colorBlack"
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -104,6 +113,7 @@
                     android:text="Find One!"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="@+id/lbl_student"
+                    android:fontFamily="@font/opensansregular"
                     app:layout_constraintStart_toStartOf="@+id/lbl_student"
                     app:layout_constraintTop_toBottomOf="@+id/lbl_student" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -117,8 +127,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Session History"
-
-            android:textColor="@color/colorBlack"
+            android:background="@drawable/background_text2"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:fontFamily="@font/opensansregular"
+            android:textColor="@color/whiteOne"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="@+id/lbl_tutor_Service"
             app:layout_constraintTop_toBottomOf="@+id/recycler_active_sesion" />
@@ -143,7 +158,7 @@
                     android:layout_height="wrap_content"
                     android:text="No Record Found"
                     android:textColor="@color/colorBlack"
-
+                    android:fontFamily="@font/opensansregular"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -181,6 +196,7 @@
             android:background="@drawable/red_circle"
             android:textColor="@color/colorWhite"
             android:text="0"
+            android:fontFamily="@font/opensansregular"
             android:textStyle="bold"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="@+id/img_btn_myRequest_option"

@@ -182,6 +182,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="28dp"
                             android:layout_weight="1"
+                            android:visibility="gone"
                             android:layout_marginBottom="5dp"
                             app:srcCompat="@drawable/ic_call_black_24dp" />
 
@@ -193,6 +194,7 @@
                             android:fontFamily="@font/opensansregular"
                             android:textColor="@color/colorBlack"
                             android:text="Contact"
+                            android:visibility="gone"
                             android:textSize="12sp" />
                     </LinearLayout>
 
@@ -205,36 +207,36 @@
                         android:paddingLeft="24sp"
                         android:paddingRight="24sp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/linearLayout4"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:textColor="@color/oceanFive"
                             android:id="@+id/tv_count_students"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/opensansregular"
+                            android:layout_marginBottom="5dp"
                             android:layout_weight="1"
+                            android:fontFamily="@font/opensansregular"
                             android:paddingTop="4sp"
                             android:text="0"
-                            android:layout_marginBottom="5dp"
-                            android:textAlignment="center" />
+                            android:textAlignment="center"
+                            android:textColor="@color/oceanFive" />
 
                         <TextView
-                            android:textColor="@color/whiteOne"
                             android:id="@+id/tv_count_tutor_students"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/opensansregular"
                             android:layout_weight="1"
                             android:background="@drawable/background_text2"
+                            android:fontFamily="@font/opensansregular"
                             android:paddingLeft="15dp"
-                            android:paddingRight="15dp"
                             android:paddingTop="5dp"
+                            android:paddingRight="15dp"
                             android:paddingBottom="5dp"
                             android:text="Student(s)"
+                            android:textColor="@color/whiteOne"
                             android:textSize="12sp" />
 
                     </LinearLayout>

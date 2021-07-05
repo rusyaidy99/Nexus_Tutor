@@ -60,7 +60,7 @@ public class activity_register extends AppCompatActivity implements AdapterView.
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         //Spinner Adapter
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.genders,android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.genders,R.layout.spinner_text);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGender.setAdapter(adapter);
         spinnerGender.setOnItemSelectedListener(this);
@@ -91,7 +91,7 @@ public class activity_register extends AppCompatActivity implements AdapterView.
                 String password = etPassword.getText().toString().trim();
                 String confirmpass = etConfirmPass.getText().toString().trim();
                 final String gender = spinnerGender.getSelectedItem().toString();
-                final String type = "Tutor";
+                final String type = "Student/Parent";
 
                 //form validation
                 if(name.isEmpty()){
@@ -140,7 +140,10 @@ public class activity_register extends AppCompatActivity implements AdapterView.
                             */
 
                             User user = new User(name, email, gender, type);
-
+                            String nameLowercase = name.toLowerCase();
+                            FirebaseDatabase.getInstance().getReference("Users")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("fullnameLowercase")
+                                    .setValue(nameLowercase);
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {

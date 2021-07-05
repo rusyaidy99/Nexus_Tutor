@@ -59,6 +59,7 @@ public class SearchStudentFragment extends Fragment {
     private FirebaseRecyclerOptions<Offer> options;
     private FirebaseRecyclerAdapter<Offer, OfferRecyclerViewAdapter.MyViewHolder> adapter;
     private RecyclerView recyclerView;
+    private Spinner spinnerFilter;
 
     private  void getComments(String offerid, final TextView comments){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Offers").child(offerid).child("Comments");
@@ -88,6 +89,14 @@ public class SearchStudentFragment extends Fragment {
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         setHasOptionsMenu(true);
 
+        spinnerFilter = searchOfferView.findViewById(R.id.filterSpinner);
+        ref = FirebaseDatabase.getInstance().getReference().child("Tutors");
+
+        ArrayAdapter<CharSequence> adapterFilter = ArrayAdapter.createFromResource(getContext(), R.array.filter_tutor,R.layout.spinner_text);
+        adapterFilter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerFilter.setAdapter(adapterFilter);
+
+
         recyclerView = searchOfferView.findViewById(R.id.recyclerview_offer_search);
 
 
@@ -104,6 +113,8 @@ public class SearchStudentFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         /*adapter = new OfferRecyclerViewAdapter(getActivity(), offerList);*/
         LinearLayoutManager linearLayout = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,false);
+        linearLayout.setReverseLayout(true);
+        linearLayout.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayout);
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -224,6 +235,8 @@ public class SearchStudentFragment extends Fragment {
                         if (snapshot.child("image").exists()){
                             String user_image = snapshot.child("image").getValue().toString();
                             Picasso.get().load(user_image).into(myViewHolder.img_view_profile);
+                        }else{
+                            Picasso.get().load(R.drawable.profile_icon).into(myViewHolder.img_view_profile);
                         }
 
                     }
@@ -260,98 +273,274 @@ public class SearchStudentFragment extends Fragment {
 
     private void searchStudent(String SearchText) {
         Log.d("search", SearchText);
-        Query searchQuery = ref.orderByChild("title").startAt(SearchText).endAt(SearchText + "\uf8ff");
-        options = new FirebaseRecyclerOptions.Builder<Offer>().setQuery(searchQuery, Offer.class).build();
-        FirebaseRecyclerAdapter<Offer, OfferRecyclerViewAdapter.MyViewHolder> firebaseRecyclerAdapter =
-                new FirebaseRecyclerAdapter<Offer, OfferRecyclerViewAdapter.MyViewHolder>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull final OfferRecyclerViewAdapter.MyViewHolder myViewHolder, int i, @NonNull final Offer Offer) {
-                        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                if(snapshot.child(Offer.getOid()).child("Requests").hasChild(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+
+        String searchCat = spinnerFilter.getSelectedItem().toString();
+
+        if(!searchCat.isEmpty()){
+            Query searchQuery = ref.orderByChild(searchCat).startAt(SearchText).endAt(SearchText + "\uf8ff");
+            options = new FirebaseRecyclerOptions.Builder<Offer>().setQuery(searchQuery, Offer.class).build();
+            FirebaseRecyclerAdapter<Offer, OfferRecyclerViewAdapter.MyViewHolder> firebaseRecyclerAdapter =
+                    new FirebaseRecyclerAdapter<Offer, OfferRecyclerViewAdapter.MyViewHolder>(options) {
+                        @Override
+                        protected void onBindViewHolder(@NonNull final OfferRecyclerViewAdapter.MyViewHolder myViewHolder, int i, @NonNull final Offer Offer) {
+                            ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if(snapshot.child(Offer.getOid()).child("Requests").hasChild(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+                                        myViewHolder.imgBtnRequestOff.setVisibility(View.GONE);
+                                        myViewHolder.imgBtnRequestOn.setVisibility(View.VISIBLE);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+                            myViewHolder.etTitle.setText("" + Offer.getTitle());
+                            myViewHolder.etDescription.setText("" + Offer.getDescription());
+                            myViewHolder.etLocation.setText("" + Offer.getLocationCity() + ", " + Offer.getLocationState());
+                            myViewHolder.etGender.setText("" + Offer.getGender());
+                            myViewHolder.etSubject.setText("" + Offer.getSubject());
+
+                            getComments(Offer.getOid(), myViewHolder.tvCommment);
+
+                            myViewHolder.imgBtnComment.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(getActivity(), activity_comment_offer.class);
+                                    intent.putExtra("offerid", Offer.getOid());
+                                    intent.putExtra("userid", Offer.getUid());
+                                    startActivity(intent);
+                                }
+                            });
+                            myViewHolder.tvCommment.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(getActivity(), activity_comment_offer.class);
+                                    intent.putExtra("offerid", Offer.getOid());
+                                    intent.putExtra("userid", Offer.getUid());
+                                    startActivity(intent);
+                                }
+                            });
+
+                            myViewHolder.imgBtnRequestOff.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    OfferRequest offerRequest = new OfferRequest(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                    ref.child(Offer.getOid()).child("Requests").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(offerRequest);
+                                    refTutor.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Offer").child(Offer.getOid()).child("status").setValue(true);
                                     myViewHolder.imgBtnRequestOff.setVisibility(View.GONE);
                                     myViewHolder.imgBtnRequestOn.setVisibility(View.VISIBLE);
+                                    Toast.makeText(getActivity(), "You requested this offer", Toast.LENGTH_SHORT).show();
                                 }
-                            }
+                            });
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+                            myViewHolder.imgBtnRequestOn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
 
-                            }
-                        });
-                        myViewHolder.etTitle.setText("" + Offer.getTitle());
-                        myViewHolder.etDescription.setText("" + Offer.getDescription());
-                        myViewHolder.etLocation.setText("" + Offer.getLocationCity() + ", " + Offer.getLocationState());
-                        myViewHolder.etGender.setText("" + Offer.getGender());
-                        myViewHolder.etSubject.setText("" + Offer.getSubject());
+                                    ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            ref.child(Offer.getOid()).child("Requests").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
+                                            refTutor.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Offer").child(Offer.getOid()).removeValue();
+                                            myViewHolder.imgBtnRequestOn.setVisibility(View.GONE);
+                                            myViewHolder.imgBtnRequestOff.setVisibility(View.VISIBLE);
 
-                        getComments(Offer.getOid(), myViewHolder.tvCommment);
+                                        }
 
-                        myViewHolder.imgBtnComment.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(getActivity(), activity_comment_offer.class);
-                                intent.putExtra("offerid", Offer.getOid());
-                                intent.putExtra("userid", Offer.getUid());
-                                startActivity(intent);
-                            }
-                        });
-                        myViewHolder.tvCommment.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(getActivity(), activity_comment_offer.class);
-                                intent.putExtra("offerid", Offer.getOid());
-                                intent.putExtra("userid", Offer.getUid());
-                                startActivity(intent);
-                            }
-                        });
-                        DatabaseReference refOffer = FirebaseDatabase.getInstance().getReference().child("Offers").child(Offer.getOid());
-                        refOffer.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                if (snapshot.child("date").exists())
-                                    myViewHolder.etDate.setText("Posted on " + snapshot.child("date").getValue());
-                            }
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+                                        }
+                                    });
 
-                            }
-                        });
 
-                        DatabaseReference refOwner = FirebaseDatabase.getInstance().getReference().child("Users").child(Offer.getUid());
-                        refOwner.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                String user_name = snapshot.child("fullname").getValue().toString();
-                                myViewHolder.etName.setText(user_name);
-                                if (snapshot.child("image").exists()){
-                                    String user_image = snapshot.child("image").getValue().toString();
-                                    Picasso.get().load(user_image).into(myViewHolder.img_view_profile);
+                                }
+                            });
+                            DatabaseReference refOffer = FirebaseDatabase.getInstance().getReference().child("Offers").child(Offer.getOid());
+                            refOffer.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if (snapshot.child("date").exists())
+                                        myViewHolder.etDate.setText("Posted on " + snapshot.child("date").getValue());
                                 }
 
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
 
-                            }
+                                }
+                            });
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+                            DatabaseReference refOwner = FirebaseDatabase.getInstance().getReference().child("Users").child(Offer.getUid());
+                            refOwner.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    String user_name = snapshot.child("fullname").getValue().toString();
+                                    myViewHolder.etName.setText(user_name);
+                                    if (snapshot.child("image").exists()){
+                                        String user_image = snapshot.child("image").getValue().toString();
+                                        Picasso.get().load(user_image).into(myViewHolder.img_view_profile);
+                                    }
 
-                            }
-                        });
-                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+                        }
 
 
-                    @NonNull
-                    @Override
-                    public OfferRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_offer,parent, false);
-                        return new OfferRecyclerViewAdapter.MyViewHolder(v);
-                    }
-                };
-        firebaseRecyclerAdapter.startListening();
-        /*recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));*/
-        recyclerView.setAdapter(firebaseRecyclerAdapter);
+                        @NonNull
+                        @Override
+                        public OfferRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_offer,parent, false);
+                            return new OfferRecyclerViewAdapter.MyViewHolder(v);
+                        }
+                    };
+            firebaseRecyclerAdapter.startListening();
+            /*recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));*/
+
+            recyclerView.setAdapter(firebaseRecyclerAdapter);
+            recyclerView.setItemViewCacheSize(10);
+        }
+
+        else {
+            Query searchQuery = ref.orderByChild("title").startAt(SearchText).endAt(SearchText + "\uf8ff");
+            options = new FirebaseRecyclerOptions.Builder<Offer>().setQuery(searchQuery, Offer.class).build();
+            FirebaseRecyclerAdapter<Offer, OfferRecyclerViewAdapter.MyViewHolder> firebaseRecyclerAdapter =
+                    new FirebaseRecyclerAdapter<Offer, OfferRecyclerViewAdapter.MyViewHolder>(options) {
+                        @Override
+                        protected void onBindViewHolder(@NonNull final OfferRecyclerViewAdapter.MyViewHolder myViewHolder, int i, @NonNull final Offer Offer) {
+                            ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if(snapshot.child(Offer.getOid()).child("Requests").hasChild(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+                                        myViewHolder.imgBtnRequestOff.setVisibility(View.GONE);
+                                        myViewHolder.imgBtnRequestOn.setVisibility(View.VISIBLE);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+                            myViewHolder.etTitle.setText("" + Offer.getTitle());
+                            myViewHolder.etDescription.setText("" + Offer.getDescription());
+                            myViewHolder.etLocation.setText("" + Offer.getLocationCity() + ", " + Offer.getLocationState());
+                            myViewHolder.etGender.setText("" + Offer.getGender());
+                            myViewHolder.etSubject.setText("" + Offer.getSubject());
+
+                            getComments(Offer.getOid(), myViewHolder.tvCommment);
+
+                            myViewHolder.imgBtnComment.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(getActivity(), activity_comment_offer.class);
+                                    intent.putExtra("offerid", Offer.getOid());
+                                    intent.putExtra("userid", Offer.getUid());
+                                    startActivity(intent);
+                                }
+                            });
+                            myViewHolder.tvCommment.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(getActivity(), activity_comment_offer.class);
+                                    intent.putExtra("offerid", Offer.getOid());
+                                    intent.putExtra("userid", Offer.getUid());
+                                    startActivity(intent);
+                                }
+                            });
+
+                            myViewHolder.imgBtnRequestOff.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    OfferRequest offerRequest = new OfferRequest(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                    ref.child(Offer.getOid()).child("Requests").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(offerRequest);
+                                    refTutor.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Offer").child(Offer.getOid()).child("status").setValue(true);
+                                    myViewHolder.imgBtnRequestOff.setVisibility(View.GONE);
+                                    myViewHolder.imgBtnRequestOn.setVisibility(View.VISIBLE);
+                                    Toast.makeText(getActivity(), "You requested this offer", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                            myViewHolder.imgBtnRequestOn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                    ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            ref.child(Offer.getOid()).child("Requests").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
+                                            refTutor.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Offer").child(Offer.getOid()).removeValue();
+                                            myViewHolder.imgBtnRequestOn.setVisibility(View.GONE);
+                                            myViewHolder.imgBtnRequestOff.setVisibility(View.VISIBLE);
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+
+
+                                }
+                            });
+                            DatabaseReference refOffer = FirebaseDatabase.getInstance().getReference().child("Offers").child(Offer.getOid());
+                            refOffer.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if (snapshot.child("date").exists())
+                                        myViewHolder.etDate.setText("Posted on " + snapshot.child("date").getValue());
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
+                            DatabaseReference refOwner = FirebaseDatabase.getInstance().getReference().child("Users").child(Offer.getUid());
+                            refOwner.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    String user_name = snapshot.child("fullname").getValue().toString();
+                                    myViewHolder.etName.setText(user_name);
+                                    if (snapshot.child("image").exists()){
+                                        String user_image = snapshot.child("image").getValue().toString();
+                                        Picasso.get().load(user_image).into(myViewHolder.img_view_profile);
+                                    }
+
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+                        }
+
+
+                        @NonNull
+                        @Override
+                        public OfferRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_offer,parent, false);
+                            return new OfferRecyclerViewAdapter.MyViewHolder(v);
+                        }
+                    };
+            firebaseRecyclerAdapter.startListening();
+            /*recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));*/
+
+            recyclerView.setAdapter(firebaseRecyclerAdapter);
+            recyclerView.setItemViewCacheSize(10);
+        }
 
     }
 

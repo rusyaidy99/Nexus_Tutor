@@ -17,6 +17,20 @@
         <item>Student</item>
         <item>Tutor</item>
     </string-array>
+    <string-array name="filter">
+        <item>Search by</item>
+        <item>fullname</item>
+        <item>city</item>
+        <item>state</item>
+    </string-array>
+
+    <string-array name="filter_tutor">
+        <item>Search by</item>
+        <item>title</item>
+        <item>locationCity</item>
+        <item>locationState</item>
+        <item>subject</item>
+    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_update_profile">update_profile</string>

@@ -54,7 +54,7 @@ public class SessionRecyclerViewAdapter extends RecyclerView.Adapter<SessionRecy
         public CardView cardviewRequest;
         public TextView mName, mSubject, mLocation, mGender, mDate;
         public Button btnAccept, btnCancel;
-        public ImageView imgMale, imgFemale;
+        public ImageView imgMale, imgFemale, imgProfile;
 
         public TextView mActiveName, mActiveSubject, mActiveDate;
         public Button mActiveContact;
@@ -67,13 +67,15 @@ public class SessionRecyclerViewAdapter extends RecyclerView.Adapter<SessionRecy
             cardviewRequest = (CardView) itemView.findViewById(R.id.cardview_confirm_request);
             mName = (TextView)itemView.findViewById(R.id.tv_request_name);
             mSubject =(TextView) itemView.findViewById(R.id.tv_request_subject);
-            mLocation = (TextView)itemView.findViewById(R.id.tv_location);
+            mLocation = (TextView)itemView.findViewById(R.id.tv_request_location);
             mGender = (TextView)itemView.findViewById(R.id.tv_student_gender);
             mDate =(TextView) itemView.findViewById(R.id.tv_request_date2);
             btnAccept = (Button) itemView.findViewById(R.id.btn_request_accept);
             btnCancel = (Button) itemView.findViewById(R.id.btn_request_cancel);
             imgMale = itemView.findViewById(R.id.img_male);
             imgFemale  = itemView.findViewById(R.id.img_female);
+            imgProfile = itemView.findViewById(R.id.img_tutor);
+
 
             //ActiveStudent Item
             mActiveName = (TextView)itemView.findViewById(R.id.tv_active_name);

@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,8 +50,9 @@ import static android.Manifest.permission.CALL_PHONE;
 
 public class activity_pay_tutor extends AppCompatActivity {
     private TextView tvName, tvSubject, tvDate, tvGender, lblPage;
-    private TextView tvDateRemaining, tvPackage, tvPrice, tvFile;
-    private Button btnContact, btnPayNow, btnCancelPay, btnUploadPay;
+    private TextView tvDuration, tvPrice, tvFile;
+    private Button btnContact, btnPayNow, btnCancelPay;
+    private ImageView btnUploadPay;
     private ImageButton imgBtnReport, imgBtnBack, imgBtnDownload;
     private CircleImageView circleImageViewTutor;
 
@@ -74,8 +76,7 @@ public class activity_pay_tutor extends AppCompatActivity {
         tvSubject = findViewById(R.id.tv_pay_subject);
         tvDate = findViewById(R.id.tv_pay_session_date);
         tvGender = findViewById(R.id.tv_pay_gender);
-        tvDateRemaining = findViewById(R.id.tv_pay_session_countdown);
-        tvPackage = findViewById(R.id.tv_pay_session_package);
+        tvDuration = findViewById(R.id.tv_duration);
         tvPrice = findViewById(R.id.tv_pay_price);
         tvFile = findViewById(R.id.tv_imgFile);
 
@@ -125,7 +126,7 @@ public class activity_pay_tutor extends AppCompatActivity {
         tutorRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull final DataSnapshot snapshot) {
-                if (snapshot.hasChild("image")){
+                if (snapshot.child(TutorId).hasChild("image")){
                     String image = snapshot.child(TutorId).child("image").getValue().toString();
                     Picasso.get().load(image).into(circleImageViewTutor);
                 }
@@ -186,8 +187,15 @@ public class activity_pay_tutor extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.child(SessionId).hasChild("PaymentFile")){
                    String pdfName = snapshot.child(SessionId).child("PaymentFile").getValue().toString();
-                   btnUploadPay.setText("REUPLOAD");
                    tvFile.setText(pdfName + ".pdf");
+                }
+                if (snapshot.child(SessionId).hasChild("fee")){
+                    String fee = snapshot.child(SessionId).child("fee").getValue().toString();
+                    tvPrice.setText(fee + " MYR");
+                }
+                if (snapshot.child(SessionId).hasChild("duration")){
+                    String duration = snapshot.child(SessionId).child("duration").getValue().toString();
+                    tvDuration.setText(duration + " Hours");
                 }
 
                 if (snapshot.child(SessionId).child("status2").getValue().equals("H" + FirebaseAuth.getInstance().getCurrentUser().getUid())){

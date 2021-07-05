@@ -73,7 +73,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView tv_tutorname, tvname, tv_gender, tvgender,tv_subject, tv_subject_history;
+        public TextView tv_tutorname, tvname, tv_gender, tvgender,tv_subject, tv_location;
         public ImageView img_tutor;
         public CardView cardView;
         public Button imgBtnViewProfile;
@@ -84,6 +84,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             tv_tutorname = (TextView) itemView.findViewById(R.id.tv_tutorname);
             tvname = (TextView) itemView.findViewById(R.id.tv_name);
             tv_gender = (TextView) itemView.findViewById(R.id.tv_tutor_gender);
+            tv_location = (TextView) itemView.findViewById(R.id.tv_tutor_location);
             tvgender = (TextView) itemView.findViewById(R.id.tv_gender);
             img_tutor = (ImageView) itemView.findViewById(R.id.img_tutor);
             cardView = (CardView) itemView.findViewById(R.id.cardview_tutor);

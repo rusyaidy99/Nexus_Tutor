@@ -8,6 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@color/oceanThree"
         android:layout_height="match_parent"
         tools:context=".activity_pay_tutor">
 
@@ -15,7 +16,7 @@
             android:id="@+id/toolbar7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/white_box_shadow"
+            android:background="@color/whiteOne"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
@@ -27,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pay Tutor"
+            android:fontFamily="@font/opensansregular"
             android:textColor="@color/colorBlack"
             android:textStyle="bold"
             android:textSize="18sp"
@@ -50,10 +52,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="My Session Details"
+            android:background="@drawable/background_text_no_border"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:fontFamily="@font/opensansregular"
             android:textColor="@color/colorBlack"
-            android:textStyle="bold"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar7" />
 
@@ -63,7 +71,7 @@
             android:layout_height="130dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
-            android:src="@drawable/profile_icon"
+            android:src="@drawable/nopicture"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
@@ -72,7 +80,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:textColor="@color/colorBlack"
+            android:fontFamily="@font/opensansregular"
+            android:textColor="@color/whiteOne"
+            android:textStyle="bold"
             android:text="Tutor Name"
             app:layout_constraintStart_toEndOf="@+id/circleImg_profile_pay"
             app:layout_constraintTop_toTopOf="@+id/circleImg_profile_pay" />
@@ -82,9 +92,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/whiteOne"
+            android:fontFamily="@font/opensansregular"
             android:layout_marginTop="8dp"
             android:text="Session Started"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/circleImg_profile_pay"
             app:layout_constraintTop_toBottomOf="@+id/tv_pay_name" />
 
@@ -93,9 +105,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/whiteOne"
+            android:fontFamily="@font/opensansregular"
             android:layout_marginTop="8dp"
             android:text="Subject Registered"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/circleImg_profile_pay"
             app:layout_constraintTop_toBottomOf="@+id/tv_pay_session_date" />
 
@@ -103,7 +117,9 @@
             android:id="@+id/tv_pay_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/whiteOne"
             android:text="Gender"
+            android:fontFamily="@font/opensansregular"
             app:layout_constraintEnd_toEndOf="@+id/circleImg_profile_pay"
             app:layout_constraintStart_toStartOf="@+id/circleImg_profile_pay"
             app:layout_constraintTop_toBottomOf="@+id/circleImg_profile_pay" />
@@ -112,8 +128,10 @@
             android:id="@+id/tv_pay_name"
             android:layout_width="224dp"
             android:layout_height="19dp"
+            android:fontFamily="@font/opensansregular"
             android:layout_marginStart="16dp"
             android:text="Tutor Name"
+            android:textColor="@color/whiteOne"
             app:layout_constraintStart_toEndOf="@+id/circleImg_profile_pay"
             app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
@@ -121,8 +139,10 @@
             android:id="@+id/tv_pay_session_date"
             android:layout_width="224dp"
             android:layout_height="19dp"
+            android:fontFamily="@font/opensansregular"
             android:layout_marginStart="16dp"
             android:text="Tutor Name"
+            android:textColor="@color/whiteOne"
             app:layout_constraintStart_toEndOf="@+id/circleImg_profile_pay"
             app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
@@ -130,19 +150,24 @@
             android:id="@+id/tv_pay_subject"
             android:layout_width="224dp"
             android:layout_height="19dp"
+            android:fontFamily="@font/opensansregular"
             android:layout_marginStart="16dp"
             android:text="Tutor Name"
+            android:textColor="@color/whiteOne"
             app:layout_constraintStart_toEndOf="@+id/circleImg_profile_pay"
             app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
         <Button
             android:id="@+id/btn_pay_contact"
             style="?android:attr/borderlessButtonStyle"
-            android:background="@drawable/gray_border"
+            android:background="@drawable/contact_button_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/opensansregular"
             android:layout_marginEnd="16dp"
+            android:textColor="@color/whiteOne"
+
             android:text="COntact"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_pay_subject" />
@@ -165,7 +190,8 @@
             android:id="@+id/cardview_upload_pay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+
+            android:layout_marginTop="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -173,15 +199,23 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/whiteOne">
 
                 <TextView
                     android:id="@+id/tv_pay_session_countdown"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:fontFamily="@font/opensansregular"
                     android:layout_marginTop="16dp"
-                    android:text="Your session has 3 days remaining"
+                    android:text="Tutor Fee Details"
+                    android:textColor="@color/whiteOne"
+                    android:background="@drawable/background_text2"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -191,6 +225,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginBottom="32dp"
+                    android:fontFamily="@font/opensansregular"
                     android:text="*Please make sure to confirm your tutor's bank account number before proceeding your online payment"
                     android:textStyle="italic"
                     app:layout_constraintBottom_toTopOf="@+id/btn_submit_pay"
@@ -203,6 +238,7 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="24dp"
                     android:text="*Upload Payment Proof (*.pdf)"
+                    android:fontFamily="@font/opensansregular"
                     android:textStyle="italic"
                     app:layout_constraintBottom_toTopOf="@+id/textView25"
                     app:layout_constraintStart_toStartOf="parent"
@@ -214,19 +250,57 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="36dp"
                     android:layout_marginTop="24dp"
+                    android:fontFamily="@font/opensansregular"
                     android:text="Total Fee (Set By Your Tutor)"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_pay_session_countdown" />
+
+                <TextView
+                    android:id="@+id/tv_pay_session_package3"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/opensansregular"
+                    android:text="Total Duration"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_pay_session_package" />
 
                 <TextView
                     android:id="@+id/tv_pay_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="48dp"
-                    android:text="RM 200"
+                    android:background="@drawable/background_text4"
+                    android:fontFamily="@font/opensansregular"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="5dp"
+                    android:text="0 MYR"
+                    android:textColor="@color/whiteOne"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_pay_session_package"
                     app:layout_constraintStart_toEndOf="@+id/tv_pay_session_package"
                     app:layout_constraintTop_toTopOf="@+id/tv_pay_session_package" />
+
+                <TextView
+                    android:id="@+id/tv_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_text4"
+                    android:fontFamily="@font/opensansregular"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="5dp"
+                    android:text="0 Hours"
+                    android:textColor="@color/whiteOne"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_pay_session_package3"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_pay_price"
+                    app:layout_constraintStart_toStartOf="@+id/tv_pay_price"
+                    app:layout_constraintTop_toTopOf="@+id/tv_pay_session_package3" />
 
                 <Button
                     android:id="@+id/btn_submit_pay"
@@ -239,6 +313,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="Submit Payment Proof"
+                    android:fontFamily="@font/opensansregular"
                     android:textColor="@color/colorWhite"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -251,6 +326,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/opensansregular"
                     android:background="@drawable/gray_border"
                     android:text="Cancel"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -261,6 +337,7 @@
                     android:layout_width="240dp"
                     android:layout_height="wrap_content"
                     android:text="No Uploaded File"
+                    android:fontFamily="@font/opensansregular"
                     app:layout_constraintBottom_toBottomOf="@+id/textView18"
                     app:layout_constraintEnd_toStartOf="@+id/btn_upload_pay"
                     app:layout_constraintStart_toStartOf="@+id/textView18"
@@ -273,18 +350,26 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="72dp"
+                    android:fontFamily="@font/opensansregular"
                     android:layout_marginRight="10dp"
                     android:background="@drawable/gray_dotted_border"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_pay_session_package" />
 
-                <Button
+                <ImageView
                     android:id="@+id/btn_upload_pay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
-                    android:text="Upload"
+
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:background="@drawable/background_text5"
+                    android:padding="5dp"
+                    android:textColor="@color/colorBlack"
+                    android:src="@drawable/ic__add_offer"
+                    android:fontFamily="@font/opensansregular"
                     app:layout_constraintBottom_toBottomOf="@+id/textView18"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView18" />
